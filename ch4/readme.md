@@ -11,3 +11,9 @@ examples + exercises + other programs
 ## struct
 ### ch4-pg1.cpp
 ### point.cpp
+
+## combinatory
+### ch4-pg2-1.cpp
+### ch4-pg2-2.cpp
+### comb.cpp
+### comb-mingw.cpp
