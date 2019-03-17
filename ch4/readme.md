@@ -17,3 +17,7 @@ examples + exercises + other programs
 ### ch4-pg2-2.cpp
 ### comb.cpp
 ### comb-mingw.cpp
+
+## prime number
+### ch4-pg3.cpp
+### ch4-pg4.cpp
