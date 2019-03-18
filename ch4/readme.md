@@ -29,4 +29,5 @@ examples + exercises + other programs
 ## sum
 ### ch4-pg7.cpp
 ### ch4-pg8.cpp
+### ch4-pg9.cpp
 ### sum.cpp

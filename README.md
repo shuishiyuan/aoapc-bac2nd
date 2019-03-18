@@ -20,7 +20,7 @@ Chapter 2: 20/20
 
 Chapter 3: 24/25
 
-Chapter 4: 8/28
+Chapter 4: 9/28
 
 Chapter 5: 12/12
 
