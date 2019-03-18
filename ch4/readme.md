@@ -21,3 +21,7 @@ examples + exercises + other programs
 ## prime number
 ### ch4-pg3.cpp
 ### ch4-pg4.cpp
+
+## swap
+### ch4-pg5.cpp
+### ch4-pg6.cpp
