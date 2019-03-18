@@ -25,3 +25,8 @@ examples + exercises + other programs
 ## swap
 ### ch4-pg5.cpp
 ### ch4-pg6.cpp
+
+## sum
+### ch4-pg7.cpp
+### ch4-pg8.cpp
+### sum.cpp
