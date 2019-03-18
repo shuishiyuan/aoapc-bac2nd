@@ -13,7 +13,7 @@ int sum(int n[5]) {
 }
 
 int main () {
-    printf("sum!\n");
+    printf("sum failure!\n");
     int n[5] = {1, 2, 3, 4, 5};
     printf("The sum of array is: %d\n", sum(n));
     return 0;
