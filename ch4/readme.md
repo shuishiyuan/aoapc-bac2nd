@@ -31,3 +31,7 @@ examples + exercises + other programs
 ### ch4-pg8.cpp
 ### ch4-pg9.cpp
 ### sum.cpp
+
+## Ancient Cipher, NEERC 2004, UVa1339
+### ch4-pg10-exam1.cpp
+### UVa1339.cpp
