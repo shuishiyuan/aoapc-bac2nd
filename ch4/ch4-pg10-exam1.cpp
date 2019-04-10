@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 
 void showArray(int n[]) {
     for (int i = 0; i < 26; ++i) {
@@ -23,6 +24,10 @@ bool decipherable(int a[], int b[]) {
     return false;
 }
 
+int cmp(const void *a, const void *b) {
+    return *(int *)b - *(int *)a;
+}
+
 int main() {
     printf("Ancient Cipher, NEERC 2004, UVa1339\n");
     int cnt1[26] = {0};
@@ -37,6 +42,15 @@ int main() {
     while((c = getchar()) != '\n') {
         cnt2[c - 'A']++;
     }
+    printf("Before sort:\n");
+    showArray(cnt1);
+    showArray(cnt2);
+    printf("%s\n", decipherable(cnt1, cnt2) ? "YES" : "NO");
+
+    qsort(cnt1, 26, sizeof(int), cmp);
+    qsort(cnt2, 26, sizeof(int), cmp);
+
+    printf("After sort:\n");
     showArray(cnt1);
     showArray(cnt2);
     printf("%s\n", decipherable(cnt1, cnt2) ? "YES" : "NO");
