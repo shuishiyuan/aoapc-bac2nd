@@ -35,3 +35,6 @@ examples + exercises + other programs
 ## Ancient Cipher, NEERC 2004, UVa1339
 ### ch4-pg10-exam1.cpp
 ### UVa1339.cpp
+
+## Factorial in Recursion
+### ch4-pg11.cpp
