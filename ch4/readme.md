@@ -38,3 +38,8 @@ examples + exercises + other programs
 
 ## Factorial in Recursion
 ### ch4-pg11.cpp
+
+## Hangman Judge, UVa489
+### ch4-pg12-exam2.cpp
+### UVa489.cpp
+
