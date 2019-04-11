@@ -43,3 +43,7 @@ examples + exercises + other programs
 ### ch4-pg12-exam2.cpp
 ### UVa489.cpp
 
+## The Dole Queue, UVa133
+### ch4-pg13-exam3.cpp
+### UVa133.cpp
+
