@@ -8,28 +8,28 @@ int main() {
 #endif
     while(scanf("%d\n", &rnd) == 1 && rnd != -1) {
         int n[26] = {0};
-        int cnt = 0;
-        int wronger = 0;
+        int left = 0;
+        int chance = 7;
         char c;
         while((c = getchar()) != '\n') {
             if (n[c - 'a']++ == 0) {
-                cnt++;
+                left++;
             }
         }
         while((c = getchar()) != '\n') {
-            if (cnt > 0 && wronger < 7) {
+            if (left > 0 && chance > 0) {
                 if (n[c - 'a'] > 0) {
-                    cnt--;
+                    left--;
                     n[c - 'a'] = 0;
                 } else {
-                    wronger++;
+                    chance--;
                 }
             }
         }
         printf("Round %d\n", rnd);
-        if (cnt == 0) {
+        if (!left) {
             printf("You Win.\n");
-        } else if (wronger == 7) {
+        } else if (!chance) {
             printf("You Lose.\n");
         } else {
             printf("You chickened out.\n");
