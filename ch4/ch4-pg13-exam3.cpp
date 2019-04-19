@@ -32,12 +32,12 @@ void process() {
     if (--k_pos == ++m_pos) {
         q[k_pos] = 1;
         left--;
-        printf("%d, ", k_pos);
+        printf("%d", k_pos);
     } else {
         q[k_pos] = q[m_pos] = 1;
         left--;
         left--;
-        printf("%d %d, ", k_pos, m_pos);
+        printf("%d %d", k_pos, m_pos);
     }
 }
 
@@ -51,13 +51,18 @@ int main() {
     m_pos = n;
     left = n;
     while(left > 0) {
-        if (left < k) {
+        /* if (left < k) {
             k = left - 1;
         }
         if (left < m) {
             m = left - 1;
-        }
+        } */
         process();
+        if (left > 0) {
+            printf(", ");
+        } else {
+            printf("\n");
+        }
     }
     return 0;
 }
