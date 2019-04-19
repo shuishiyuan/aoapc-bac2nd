@@ -4,14 +4,41 @@ int n;
 int k;
 int m;
 
-int q[20] = {1};
+// int q[20] = {[0 ... 19] = 1};
+// int q[20] = { 1 };
+int q[20] = { 0 };
 int left;
 int k_pos;
 int m_pos;
 
 void process() {
-    left = n - k - m * 2;
-    printf("4 8, 9 5, 3 1, 2 6, 10, 7\nleft = %d\n", left);
+    
+    for (int k_skip = 0; k_skip < k; ++k_pos) {
+        if (k_pos == n + 1) {
+            k_pos = 1;
+        }
+        if (!q[k_pos]) {
+            k_skip++;
+        }
+    }
+    for (int m_skip = 0; m_skip < m; --m_pos) {
+        if (m_pos == 0) {
+            m_pos = n;
+        }
+        if (!q[m_pos]) {
+            m_skip++;
+        }
+    }
+    if (--k_pos == ++m_pos) {
+        q[k_pos] = 1;
+        left--;
+        printf("%d, ", k_pos);
+    } else {
+        q[k_pos] = q[m_pos] = 1;
+        left--;
+        left--;
+        printf("%d %d, ", k_pos, m_pos);
+    }
 }
 
 int main() {
@@ -24,6 +51,12 @@ int main() {
     m_pos = n;
     left = n;
     while(left > 0) {
+        if (left < k) {
+            k = left - 1;
+        }
+        if (left < m) {
+            m = left - 1;
+        }
         process();
     }
     return 0;
