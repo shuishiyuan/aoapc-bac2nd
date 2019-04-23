@@ -11,33 +11,22 @@ int left;
 int k_pos;
 int m_pos;
 
-void process() {
-    
-    for (int k_skip = 0; k_skip < k; ++k_pos) {
-        if (k_pos == n + 1) {
-            k_pos = 1;
-        }
-        if (!q[k_pos]) {
-            k_skip++;
-        }
+void move() {
+    for (int k_skip = 0; k_skip < k; ++k_skip) {
+        do {
+            k_pos++;
+            if (k_pos == n + 1) {
+                k_pos = 1;
+            }
+        } while (q[k_pos]);
     }
-    for (int m_skip = 0; m_skip < m; --m_pos) {
-        if (m_pos == 0) {
-            m_pos = n;
-        }
-        if (!q[m_pos]) {
-            m_skip++;
-        }
-    }
-    if (--k_pos == ++m_pos) {
-        q[k_pos] = 1;
-        left--;
-        printf("%d", k_pos);
-    } else {
-        q[k_pos] = q[m_pos] = 1;
-        left--;
-        left--;
-        printf("%d %d", k_pos, m_pos);
+    for (int m_skip = 0; m_skip < m; ++m_skip) {
+        do {
+            m_pos--;
+            if (m_pos == 0) {
+                m_pos = n;
+            }
+        } while (q[m_pos]);
     }
 }
 
@@ -47,21 +36,29 @@ int main() {
     freopen("./data/ch4-pg13-exam3.in", "r", stdin);
 #endif
     scanf("%d%d%d\n", &n, &k, &m);
-    k_pos = 1;
-    m_pos = n;
+    k_pos = n;
+    m_pos = 1;
     left = n;
-    while(left > 0) {
+    while(left) {
         /* if (left < k) {
             k = left - 1;
         }
         if (left < m) {
             m = left - 1;
         } */
-        process();
-        if (left > 0) {
-            printf(", ");
+        move();
+        if (k_pos == m_pos) {
+            q[k_pos] = 1;
+            left--;
+            printf("%d", k_pos);
         } else {
-            printf("\n");
+            q[k_pos] = q[m_pos] = 1;
+            left--;
+            left--;
+            printf("%d %d", k_pos, m_pos);
+        }
+        if (left) {
+            printf(", ");
         }
     }
     return 0;
