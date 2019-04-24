@@ -14,18 +14,20 @@ int m_pos;
 void move() {
     for (int k_skip = 0; k_skip < k; ++k_skip) {
         do {
-            k_pos++;
+            /* k_pos++;
             if (k_pos == n + 1) {
                 k_pos = 1;
-            }
+            } */
+            k_pos = k_pos  % n + 1;
         } while (q[k_pos]);
     }
     for (int m_skip = 0; m_skip < m; ++m_skip) {
         do {
-            m_pos--;
+            /* m_pos--;
             if (m_pos == 0) {
                 m_pos = n;
-            }
+            } */
+            m_pos = (m_pos - n - 1) % n + n;
         } while (q[m_pos]);
     }
 }
