@@ -1,35 +1,17 @@
 #include <stdio.h>
 
 int n;
-int k;
-int m;
-
 // int q[20] = {[0 ... 19] = 1};
 // int q[20] = { 1 };
 int q[20] = { 0 };
-int left;
-int k_pos;
-int m_pos;
 
-void move() {
-    for (int k_skip = 0; k_skip < k; ++k_skip) {
+int move(int pos, int step, int direct) {
+    while (step--) {
         do {
-            /* k_pos++;
-            if (k_pos == n + 1) {
-                k_pos = 1;
-            } */
-            k_pos = k_pos  % n + 1;
-        } while (q[k_pos]);
+            pos = (pos + direct + n - 1) % n + 1;
+        } while (q[pos]);
     }
-    for (int m_skip = 0; m_skip < m; ++m_skip) {
-        do {
-            /* m_pos--;
-            if (m_pos == 0) {
-                m_pos = n;
-            } */
-            m_pos = (m_pos - n - 1) % n + n;
-        } while (q[m_pos]);
-    }
+    return pos;
 }
 
 int main() {
@@ -37,27 +19,23 @@ int main() {
 #ifdef LOCAL
     freopen("./data/ch4-pg13-exam3.in", "r", stdin);
 #endif
+    int k;
+    int m;
     scanf("%d%d%d\n", &n, &k, &m);
-    k_pos = n;
-    m_pos = 1;
-    left = n;
+    int k_pos = n;
+    int m_pos = 1;
+    int left = n;
     while(left) {
-        /* if (left < k) {
-            k = left - 1;
-        }
-        if (left < m) {
-            m = left - 1;
-        } */
-        move();
+        k_pos = move(k_pos, k, 1);
+        m_pos = move(m_pos, m, -1);
         if (k_pos == m_pos) {
             q[k_pos] = 1;
             left--;
-            printf("%d", k_pos);
+            printf("%2d", k_pos);
         } else {
             q[k_pos] = q[m_pos] = 1;
-            left--;
-            left--;
-            printf("%d %d", k_pos, m_pos);
+            left -= 2;
+            printf("%d%3d", k_pos, m_pos);
         }
         if (left) {
             printf(", ");
