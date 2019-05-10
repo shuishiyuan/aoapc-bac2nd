@@ -47,3 +47,6 @@ examples + exercises + other programs
 ### ch4-pg13-exam3.cpp
 ### UVa133.cpp
 
+## Message Decoding, ACM/ICPC World Finals 1991, UVa 213
+### ch4-pg14-exam4.cpp
+### uva213.cpp
