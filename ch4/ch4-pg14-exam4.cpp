@@ -30,18 +30,16 @@ int main() {
     int break_step = 3;
     bool is_book_ready = false;
     while((c = getchar()) != '\n') {
-        if (break_step = 0) {
+        if (break_step == 0) {
             if (is_book_ready) {
                 if (offset_index != pow(2, base_num) -1) {
                     putchar(decode_book[base_index + offset_index]);
-                    offset_index = pow(2, break_step - 1) * (c - '0');
                     break_step = base_num;
-                    continue;
+                    offset_index = pow(2, break_step - 1) * (c - '0');
                 } else {
                     break_step = 3;
                     base_num = pow(2, break_step - 1) * (c - '0');
                     is_book_ready = false;
-                    continue;
                 }
             } else {
                 if (base_num == 0) {
@@ -51,7 +49,6 @@ int main() {
                 offset_index = pow(2, break_step - 1) * (c - '0');
                 is_book_ready = true;
                 break_step = base_num;
-                continue;
             }
         } else {
             if (is_book_ready) {
