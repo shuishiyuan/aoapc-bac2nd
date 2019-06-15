@@ -29,7 +29,7 @@ int main() {
     int offset_index = 0;
     int break_step = 3;
     bool is_book_ready = false;
-    while((c = getchar()) != '\n') {
+    while((c = getchar())) {
         if (break_step == 0) {
             if (is_book_ready) {
                 if (offset_index != pow(2, base_num) -1) {
@@ -43,6 +43,7 @@ int main() {
                 }
             } else {
                 if (base_num == 0) {
+                    putchar('\n');
                     return 0;
                 }
                 base_index = calculate_base_index(base_num);
@@ -59,8 +60,4 @@ int main() {
         }
         break_step--;
     }
-    putchar('\n');
-
-
-    return 0;
 }
