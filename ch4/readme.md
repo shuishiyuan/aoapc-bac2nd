@@ -51,3 +51,9 @@ examples + exercises + other programs
 ### ch4-pg14-exam4.cpp
 ### ch4-pg15-exam4.cpp
 ### uva213.cpp
+
+## Spreadsheet Tracking, ACM/ICPC World Finals 1997, UVa512
+### ch4-pg16-exam5.cpp
+### ch4-pg17-exam5.cpp
+### UVa512a.cpp
+### UVa512b.cpp
