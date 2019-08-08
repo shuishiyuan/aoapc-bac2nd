@@ -20,6 +20,7 @@ int main() {
 
     int row_pos;
     int col_pos;
+    // Test Push in Proxy
     scanf("%d\n", &query_num);
     while(query_num--) {
         scanf("%d%d\n", &row_pos, &col_pos);
