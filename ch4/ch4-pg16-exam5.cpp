@@ -22,11 +22,11 @@ int main() {
     while(operation_num--) {
         scanf("%s", current_key);
         while(current_key[0] > '0' && current_key[0] < '9') {
-            printf("%s", current_key);
+            printf("%s ", current_key);
             scanf("%s", current_key);
         }
         strcpy(current_key, operation_key);
-        printf("\n%s", operation_key);
+        printf("\n%s ", operation_key);
     }
 
     int row_pos;
@@ -34,7 +34,7 @@ int main() {
     // Test Push in Proxy
     scanf("%d\n", &query_num);
     while(query_num--) {
-        scanf("%d%d\n", &row_pos, &col_pos);
+        scanf("%d %d\n", &row_pos, &col_pos);
         printf("%d %d\n", row_pos, col_pos);
     }
     return 0;
