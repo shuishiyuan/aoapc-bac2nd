@@ -28,6 +28,7 @@ int main() {
             printf("%s ", current_key);
             scanf("%s", current_key);
             if (strlen(current_key) > 2) {
+                // putchar('\n');
                 break;
             }
         }
@@ -39,10 +40,13 @@ int main() {
     int col_pos;
     // Test Push in Proxy
     // scanf("%d\n", &query_num);
-    query_num = current_key[0] * 100 + current_key[1] * 10 + current_key[2];
-    /* while(query_num--) {
+    putchar('\n');
+    query_num = (current_key[0] - '0') * 100 + (current_key[1] - '0') * 10 + current_key[2] - '0';
+    // printf("%s\t", current_key);
+    // printf("%d", query_num);
+    while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
         printf("%d %d\n", row_pos, col_pos);
-    } */
+    }
     return 0;
 }
