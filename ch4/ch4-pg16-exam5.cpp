@@ -1,6 +1,32 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #define MAX 50
+
+bool readChars(char *keys) {
+    char c;
+    while((c = getchar()) != '\n') {
+        if (c != ' ') {
+            *keys++ = c;
+        } else {
+            *keys = '\0';
+            return true;
+        }
+    }
+    return false;
+}
+
+bool readIntegers(int *number) {
+    *number = 0;
+    char *keys;
+    bool ret_val = readChars(keys);
+    int max_pow = strlen(keys) - 1;
+    char c;
+    while((c = *keys++) != '\0') {
+        *number += pow(10, max_pow--) * (c - '0');
+    }
+    return ret_val;
+}
 
 int main() {
     printf("Solution a of Spreadsheet Tracking!\n");
@@ -13,27 +39,18 @@ int main() {
 #ifdef LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
 #endif
-    scanf("%d%d\n", &row_num, &col_num);
+    scanf("%d %d\n", &row_num, &col_num);
     scanf("%d\n", &operation_num);
     char operation_key[4];
     char current_key[4];
-    scanf("%s", operation_key);
-    printf("\n%s ", operation_key);
+    int current_num;
     while(operation_num--) {
-        scanf("%s", current_key);
-        if (strlen(current_key) > 2) {
-            break;
+        readChars(current_key);
+        printf("%s", current_key);
+        while(readIntegers(&current_num)) {
+            printf(" %d", current_num);
         }
-        while(current_key[0] >= '0' && current_key[0] <= '9') {
-            printf("%s ", current_key);
-            scanf("%s", current_key);
-            if (strlen(current_key) > 2) {
-                // putchar('\n');
-                break;
-            }
-        }
-        strcpy(operation_key, current_key);
-        printf("\n%s ", operation_key);
+        printf(" %d\n", current_num);
     }
 
     int row_pos;
@@ -41,12 +58,12 @@ int main() {
     // Test Push in Proxy
     // scanf("%d\n", &query_num);
     putchar('\n');
-    query_num = (current_key[0] - '0') * 100 + (current_key[1] - '0') * 10 + current_key[2] - '0';
+    readIntegers(&query_num);
     // printf("%s\t", current_key);
     // printf("%d", query_num);
-    while(query_num--) {
+    /* while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
         printf("%d %d\n", row_pos, col_pos);
-    }
+    } */
     return 0;
 }
