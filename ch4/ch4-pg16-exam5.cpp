@@ -62,6 +62,6 @@ int main() {
         scanf("%d %d\n", &row_pos, &col_pos);
         printf("%d %d\n", row_pos, col_pos);
     }
-    // Test For Push.
+    // Test For Push 2019/08/26.
     return 0;
 }
