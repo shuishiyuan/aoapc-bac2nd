@@ -2,6 +2,7 @@
 #include <string.h>
 #include <math.h>
 #define MAX 50
+#define MOD 100
 
 bool readChars(char *keys) {
     char c;
@@ -32,7 +33,7 @@ bool readIntegers(int *number) {
 
 int main() {
     printf("Solution a of Spreadsheet Tracking!\n");
-    // int work_sheet[MAX][MAX];
+    int work_sheet[MAX][MAX];
     int row_num;
     int col_num;
     int operation_num;
@@ -43,6 +44,19 @@ int main() {
 #endif
     scanf("%d %d\n", &row_num, &col_num);
     scanf("%d\n", &operation_num);
+    for (int i = 0; i < row_num; ++i) {
+        for (int j = 0; j < col_num; ++j) {
+            work_sheet[i][j] = (i + 1) * MOD + (j + 1);
+        }
+    }
+    printf("The initialized work sheet is :\n");
+    for (int i = 0; i < row_num; ++i) {
+        for (int j = 0; j < col_num; ++j) {
+            printf("%d ", work_sheet[i][j]);
+        }
+        putchar('\n');
+    }
+
     char current_key[4];
     int current_num;
     while(operation_num--) {
