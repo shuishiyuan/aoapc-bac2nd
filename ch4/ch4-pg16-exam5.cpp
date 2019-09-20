@@ -49,6 +49,8 @@ int main() {
             work_sheet[i][j] = (i + 1) * MOD + (j + 1);
         }
     }
+    
+    /*
     printf("The initialized work sheet is :\n");
     for (int i = 0; i < row_num; ++i) {
         for (int j = 0; j < col_num; ++j) {
@@ -56,6 +58,15 @@ int main() {
         }
         putchar('\n');
     }
+
+    printf("The targeted work sheet is :\n");
+    for (int i = 0; i < row_num; ++i) {
+        for (int j = 0; j < col_num; ++j) {
+            printf("(%d %d) ", work_sheet[i][j] / MOD, work_sheet[i][j] % MOD);
+        }
+        putchar('\n');
+    }
+    */
 
     char current_key[4];
     int current_num;
@@ -72,10 +83,12 @@ int main() {
     int col_pos;
     readIntegers(&query_num);
     printf("%d\n", query_num);
+    /*
     while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
         printf("%d %d\n", row_pos, col_pos);
     }
+    */
     // Test For Push 2019/08/26.
     return 0;
 }
