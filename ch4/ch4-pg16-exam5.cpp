@@ -4,6 +4,10 @@
 #define MAX 50
 #define MOD 100
 
+int work_sheet[MAX][MAX];
+int work_sheet_bak[MAX][MAX];
+int process_info[MAX];
+
 bool readChars(char *keys) {
     char c;
     while((c = getchar()) != '\n') {
@@ -33,7 +37,6 @@ bool readIntegers(int *number) {
 
 int main() {
     printf("Solution a of Spreadsheet Tracking!\n");
-    int work_sheet[MAX][MAX];
     int row_num;
     int col_num;
     int operation_num;
@@ -73,14 +76,17 @@ int main() {
     while(operation_num--) {
         readChars(current_key);
         printf("%s", current_key);
-        while(readIntegers(&current_num)) {
+        int num_counter = readIntegers(&current_num) ? current_num : 0;
+        while(num_counter--) {
+            readIntegers(&current_num);
             printf(" %d", current_num);
         }
-        printf(" %d\n", current_num);
+        // printf(" %d\n", current_num);
+        putchar('\n');
     }
 
-    int row_pos;
-    int col_pos;
+    // int row_pos;
+    // int col_pos;
     readIntegers(&query_num);
     printf("%d\n", query_num);
     /*
