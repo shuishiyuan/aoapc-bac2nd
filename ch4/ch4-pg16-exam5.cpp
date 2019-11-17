@@ -76,11 +76,14 @@ int main() {
     while(operation_num--) {
         readChars(current_key);
         printf("%s", current_key);
-        int num_counter = readIntegers(&current_num) ? current_num : 0;
-        while(num_counter--) {
-            readIntegers(&current_num);
-            printf(" %d", current_num);
-        }
+	int num_counter = 4;
+	if (current_key[0] == 'I' || current_key[0] == 'D') {
+		num_counter = readIntegers(&current_num) ? current_num : 0;
+	}
+	while(num_counter--) {
+	    readIntegers(&current_num);
+	    printf(" %d", current_num);
+	}
         // printf(" %d\n", current_num);
         putchar('\n');
     }
