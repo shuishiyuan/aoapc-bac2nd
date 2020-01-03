@@ -68,9 +68,14 @@ int main() {
     while(operation_num--) {
         readChars(current_key);
         printf("%s", current_key);
-	int num_counter = 4;
+	int num_counter = 0;
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
 		num_counter = readIntegers(&current_num) ? current_num : 0;
+	} else if (strcmp(current_key, "EX")) {
+		printf(" This is an exchange!\n");
+		while(readIntegers(&current_num)) {
+			// continue;
+		}
 	}
 	while(num_counter--) {
 	    readIntegers(&current_num);
