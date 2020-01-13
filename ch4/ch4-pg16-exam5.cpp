@@ -67,21 +67,24 @@ int main() {
     int current_num;
     while(operation_num--) {
         readChars(current_key);
-        printf("%s", current_key);
 	int num_counter = 0;
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
+		printf("%s", current_key);
 		num_counter = readIntegers(&current_num) ? current_num : 0;
-	} else if (strcmp(current_key, "EX")) {
+	// } else if (strcmp(current_key, "EX")) {
+	}/* else if (current_key[0] == 'E' && current_key[1] == 'X') {
 		printf(" This is an exchange!\n");
-		while(readIntegers(&current_num)) {
+		// while(readIntegers(&current_num)) {
+			// printf("%d ", current_num);
 			// continue;
-		}
-	}
+		// }
+	} */
 	while(num_counter--) {
 	    readIntegers(&current_num);
 	    printf(" %d", current_num);
 	}
         // printf(" %d\n", current_num);
+	// memset(current_key, '\0', sizeof(char) * 4);
         putchar('\n');
     }
 
@@ -95,14 +98,14 @@ int main() {
     }
     */
 
-    int row_pos;
-    int col_pos;
+    // int row_pos;
+    // int col_pos;
     readIntegers(&query_num);
     printf("There are %d queries!\n", query_num);
-    while(query_num--) {
+    /* while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
         printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, work_sheet[row_pos - 1][col_pos - 1] / MOD, work_sheet[row_pos - 1][col_pos - 1] % MOD);
-    }
+    } */
     // Test For Push 2019/08/26.
     return 0;
 }
