@@ -72,13 +72,15 @@ int main() {
 		printf("%s", current_key);
 		num_counter = readIntegers(&current_num) ? current_num : 0;
 	// } else if (strcmp(current_key, "EX")) {
-	}/* else if (current_key[0] == 'E' && current_key[1] == 'X') {
-		printf(" This is an exchange!\n");
-		// while(readIntegers(&current_num)) {
+		//continue;
+	} else if (current_key[0] == 'E' && current_key[1] == 'X') {
+		// printf(" This is an exchange!\n");
+		while(readIntegers(&current_num)) {
 			// printf("%d ", current_num);
-			// continue;
-		// }
-	} */
+			continue;
+		}
+		continue;
+	}
 	while(num_counter--) {
 	    readIntegers(&current_num);
 	    printf(" %d", current_num);
