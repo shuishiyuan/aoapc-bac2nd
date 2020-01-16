@@ -71,19 +71,21 @@ int main() {
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
 		printf("%s", current_key);
 		num_counter = readIntegers(&current_num) ? current_num : 0;
+		while(num_counter--) {
+		    readIntegers(&current_num);
+		    printf(" %d", current_num);
+		}
 	// } else if (strcmp(current_key, "EX")) {
 		//continue;
 	} else if (current_key[0] == 'E' && current_key[1] == 'X') {
+		printf("%s", current_key);
 		// printf(" This is an exchange!\n");
 		while(readIntegers(&current_num)) {
-			// printf("%d ", current_num);
+			printf(" %d", current_num);
 			continue;
 		}
-		continue;
-	}
-	while(num_counter--) {
-	    readIntegers(&current_num);
-	    printf(" %d", current_num);
+		printf(" %d", current_num);
+		// continue;
 	}
         // printf(" %d\n", current_num);
 	// memset(current_key, '\0', sizeof(char) * 4);
