@@ -7,6 +7,7 @@
 int work_sheet[MAX][MAX];
 int work_sheet_bak[MAX][MAX];
 int process_info[MAX];
+int blank_set[MAX];
 
 bool readChars(char *keys) {
     char c;
@@ -51,6 +52,7 @@ int main() {
         for (int j = 0; j < col_num; ++j) {
             work_sheet[i][j] = (i + 1) * MOD + (j + 1);
         }
+	blank_set[i] = 0;
     }
     
     /*
