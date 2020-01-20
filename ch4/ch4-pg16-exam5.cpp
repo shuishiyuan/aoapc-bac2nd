@@ -104,14 +104,21 @@ int main() {
     }
     */
 
-    // int row_pos;
-    // int col_pos;
+    int row_pos;
+    int col_pos;
     readIntegers(&query_num);
     printf("There are %d queries!\n", query_num);
-    /* while(query_num--) {
+    while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
-        printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, work_sheet[row_pos - 1][col_pos - 1] / MOD, work_sheet[row_pos - 1][col_pos - 1] % MOD);
-    } */
+	for (int i = 0; i < row_num; ++i) {
+	    for (int j = 0; j < col_num; ++j) {
+		if (work_sheet[i - 1][j - 1] / MOD == row_pos &&
+		    work_sheet[i - 1][j - 1] % MOD == col_pos) {
+			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, work_sheet[row_pos - 1][col_pos - 1] / MOD, work_sheet[row_pos - 1][col_pos - 1] % MOD);
+		}
+	    }
+	}
+    }
     // Test For Push 2019/08/26.
     return 0;
 }
