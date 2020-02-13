@@ -114,7 +114,7 @@ int main() {
 	    for (int j = 0; j < col_num; ++j) {
 		if (work_sheet[i - 1][j - 1] / MOD == row_pos &&
 		    work_sheet[i - 1][j - 1] % MOD == col_pos) {
-			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, work_sheet[row_pos - 1][col_pos - 1] / MOD, work_sheet[row_pos - 1][col_pos - 1] % MOD);
+			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i, j);
 		}
 	    }
 	}
