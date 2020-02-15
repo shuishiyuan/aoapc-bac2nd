@@ -82,6 +82,9 @@ int main() {
 	} else if (current_key[0] == 'E' && current_key[1] == 'X') {
 		printf("%s", current_key);
 		// printf(" This is an exchange!\n");
+		int tmp_row_index = 0;
+		int tmp-col_index = 0;
+		int tmp_data = 0;
 		while(readIntegers(&current_num)) {
 			printf(" %d", current_num);
 			continue;
