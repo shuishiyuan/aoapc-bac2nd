@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #define MAX 50
@@ -82,14 +83,15 @@ int main() {
 	} else if (current_key[0] == 'E' && current_key[1] == 'X') {
 		printf("%s", current_key);
 		// printf(" This is an exchange!\n");
-		int tmp_row_index = 0;
-		int tmp-col_index = 0;
-		int tmp_data = 0;
+		int *index_tmp = (int*)malloc(sizeof(int)*5);
 		while(readIntegers(&current_num)) {
-			printf(" %d", current_num);
+			*index_tmp++ = current_num;
+			// printf(" %d", current_num);
 			continue;
 		}
-		printf(" %d", current_num);
+		*index_tmp++ = current_num;
+		*index_tmp = '\0';
+		// printf(" %d", current_num);
 		// continue;
 	}
         // printf(" %d\n", current_num);
