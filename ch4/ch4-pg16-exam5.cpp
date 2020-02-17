@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #define MAX 50
@@ -86,12 +85,12 @@ int main() {
 		int *index_tmp = (int*)malloc(sizeof(int)*5);
 		while(readIntegers(&current_num)) {
 			*index_tmp++ = current_num;
-			// printf(" %d", current_num);
+			printf(" %d", *(index_tmp - 1));
 			continue;
 		}
 		*index_tmp++ = current_num;
 		*index_tmp = '\0';
-		// printf(" %d", current_num);
+		printf(" %d", *(index_tmp - 1));
 		// continue;
 	}
         // printf(" %d\n", current_num);
@@ -113,7 +112,7 @@ int main() {
     int col_pos;
     readIntegers(&query_num);
     printf("There are %d queries!\n", query_num);
-    while(query_num--) {
+    /* while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
 	for (int i = 0; i < row_num; ++i) {
 	    for (int j = 0; j < col_num; ++j) {
@@ -123,7 +122,7 @@ int main() {
 		}
 	    }
 	}
-    }
+    } */
     // Test For Push 2019/08/26.
     return 0;
 }
