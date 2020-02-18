@@ -83,14 +83,19 @@ int main() {
 		printf("%s", current_key);
 		// printf(" This is an exchange!\n");
 		int *index_tmp = (int*)malloc(sizeof(int)*5);
+		int *index_tmp_start = index_tmp;
 		while(readIntegers(&current_num)) {
 			*index_tmp++ = current_num;
-			printf(" %d", *(index_tmp - 1));
+			// printf(" %d", *(index_tmp - 1));
 			continue;
 		}
 		*index_tmp++ = current_num;
 		*index_tmp = '\0';
-		printf(" %d", *(index_tmp - 1));
+		index_tmp -= 4;
+		// index_tmp = index_tmp_start;
+		while (*index_tmp != '\0') {
+		    printf(" %d", *index_tmp++);
+		}
 		// continue;
 	}
         // printf(" %d\n", current_num);
