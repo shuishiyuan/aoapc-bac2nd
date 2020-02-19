@@ -2,10 +2,10 @@
 #include <string.h>
 #include <math.h>
 #define MAX 50
-#define MOD 100
+#define MOD 1000
 
-int work_sheet[MAX][MAX];
-int work_sheet_bak[MAX][MAX];
+long int work_sheet[MAX][MAX];
+long int work_sheet_bak[MAX][MAX];
 int process_info[MAX];
 int blank_set[MAX];
 
@@ -85,17 +85,26 @@ int main() {
 		int *index_tmp = (int*)malloc(sizeof(int)*5);
 		int *index_tmp_start = index_tmp;
 		while(readIntegers(&current_num)) {
+			printf(" %d", current_num);
 			*index_tmp++ = current_num;
-			// printf(" %d", *(index_tmp - 1));
 			continue;
 		}
+		printf(" %d", current_num);
 		*index_tmp++ = current_num;
 		*index_tmp = '\0';
 		index_tmp -= 4;
+		printf(" %d %d",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
+		// int tmp = work_sheet[index_tmp[2]][index_tmp[3]];
+		// work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[0]][index_tmp[1]];
+		// work_sheet[index_tmp[0]][index_tmp[1]] = tmp;
+		work_sheet[index_tmp[2]][index_tmp[3]] += work_sheet[index_tmp[0]][index_tmp[1]];
+		work_sheet[index_tmp[0]][index_tmp[1]] = work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
+		work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
+		printf(" %d %d",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
 		// index_tmp = index_tmp_start;
-		while (*index_tmp != '\0') {
+		/* while (*index_tmp != '\0') {
 		    printf(" %d", *index_tmp++);
-		}
+		}*/
 		// continue;
 	}
         // printf(" %d\n", current_num);
@@ -117,17 +126,17 @@ int main() {
     int col_pos;
     readIntegers(&query_num);
     printf("There are %d queries!\n", query_num);
-    /* while(query_num--) {
+    while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
 	for (int i = 0; i < row_num; ++i) {
 	    for (int j = 0; j < col_num; ++j) {
-		if (work_sheet[i - 1][j - 1] / MOD == row_pos &&
-		    work_sheet[i - 1][j - 1] % MOD == col_pos) {
-			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i, j);
+		if (work_sheet[i - 1][j - 1] / MOD == row_pos + 1 &&
+		    work_sheet[i - 1][j - 1] % MOD == col_pos + 1) {
+			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i - 1, j - 1);
 		}
 	    }
 	}
-    } */
+    }
     // Test For Push 2019/08/26.
     return 0;
 }
