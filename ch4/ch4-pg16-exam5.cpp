@@ -72,10 +72,18 @@ int main() {
 	int num_counter = 0;
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
 		printf("%s", current_key);
+		memset(process_info, 0, sizeof(int) * MAX);
 		num_counter = readIntegers(&current_num) ? current_num : 0;
 		while(num_counter--) {
 		    readIntegers(&current_num);
 		    printf(" %d", current_num);
+		    if (!process_info[current_num - 1]) {
+			process_info[current_num - 1] = 1;
+		    }
+		}
+		putchar('\n');
+		for (int i = 0; i < MAX; ++i) {
+			printf("%d ", process_info[i]);
 		}
 	// } else if (strcmp(current_key, "EX")) {
 		//continue;
