@@ -3,6 +3,7 @@
 #include <math.h>
 #define MAX 50
 #define MOD 1000
+#define HIGH_VAL 65536
 
 long int work_sheet[MAX][MAX];
 long int work_sheet_bak[MAX][MAX];
@@ -52,7 +53,7 @@ int main() {
         for (int j = 0; j < col_num; ++j) {
             work_sheet[i][j] = (i + 1) * MOD + (j + 1);
         }
-	blank_set[i] = 0;
+        blank_set[i] = HIGH_VAL;
     }
     
     /*
@@ -78,12 +79,21 @@ int main() {
 		    readIntegers(&current_num);
 		    printf(" %d", current_num);
 		    if (!process_info[current_num - 1]) {
-			process_info[current_num - 1] = 1;
+                process_info[current_num - 1] = 1;
 		    }
 		}
 		putchar('\n');
 		for (int i = 0; i < MAX; ++i) {
 			printf("%d ", process_info[i]);
+		}
+		if (current_key[0] == 'I') {
+		    if (current_key[1] == 'R') {
+			for (int i = 0; i < row_num; ++i) {
+				if (process_info[i]) {
+				    copy(blank_set, work_sheet_bak[i]);
+				}
+			}
+		    }
 		}
 	// } else if (strcmp(current_key, "EX")) {
 		//continue;
