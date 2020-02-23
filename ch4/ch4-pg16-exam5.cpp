@@ -9,6 +9,8 @@ long int work_sheet[MAX][MAX];
 long int work_sheet_bak[MAX][MAX];
 int process_info[MAX];
 int blank_set[MAX];
+int row_num;
+int col_num;
 
 bool readChars(char *keys) {
     char c;
@@ -37,10 +39,23 @@ bool readIntegers(int *number) {
     return ret_val;
 }
 
+void copy_line(long int *p_from, long int *p_to) {
+    for (long int i = 0; i < col_num; ++i) {
+        p_to[i] = p_from[i];
+    }
+}
+
+void copy_back() {
+    memset(work_sheet, '\0', MAX * MAX);
+    for (int i = 0; i < MAX; ++i) {
+        for (int j = 0; j < MAX; ++j) {
+            work_sheet[i][j] = work_sheet_bak[i][j];
+        }
+    }
+}
+
 int main() {
     printf("Solution a of Spreadsheet Tracking!\n");
-    int row_num;
-    int col_num;
     int operation_num;
     int query_num;
 
@@ -69,6 +84,7 @@ int main() {
     char current_key[4];
     int current_num;
     while(operation_num--) {
+        memset(work_sheet_bak, '\0', MAX * MAX);
         readChars(current_key);
 	int num_counter = 0;
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
@@ -86,15 +102,18 @@ int main() {
 		for (int i = 0; i < MAX; ++i) {
 			printf("%d ", process_info[i]);
 		}
+                int current_bak_index = 0;
 		if (current_key[0] == 'I') {
 		    if (current_key[1] == 'R') {
 			for (int i = 0; i < row_num; ++i) {
-				if (process_info[i]) {
-				    copy(blank_set, work_sheet_bak[i]);
-				}
+                            if (process_info[i]) {
+                                copy_line(blank_set, work_sheet_bak[current_bak_index++]);
+                            }
+                            copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
 			}
 		    }
 		}
+                copy_back();
 	// } else if (strcmp(current_key, "EX")) {
 		//continue;
 	} else if (current_key[0] == 'E' && current_key[1] == 'X') {
