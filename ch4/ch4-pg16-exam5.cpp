@@ -8,7 +8,7 @@
 long int work_sheet[MAX][MAX];
 long int work_sheet_bak[MAX][MAX];
 int process_info[MAX];
-int blank_set[MAX];
+long int blank_set[MAX];
 int row_num;
 int col_num;
 
@@ -40,8 +40,14 @@ bool readIntegers(int *number) {
 }
 
 void copy_line(long int *p_from, long int *p_to) {
-    for (long int i = 0; i < col_num; ++i) {
-        p_to[i] = p_from[i];
+    for (long int j = 0; j < col_num; ++j) {
+        p_to[j] = p_from[j];
+    }
+}
+
+void copy_col(long int *p_from, long int *p_to) {
+    for (long int i = 0; i < row_num; ++i) {
+        p_to[i * col_num] = p_from[i * col_num];
     }
 }
 
@@ -84,23 +90,23 @@ int main() {
     char current_key[4];
     int current_num;
     while(operation_num--) {
-        memset(work_sheet_bak, '\0', MAX * MAX);
+        memset(work_sheet_bak, '\0', sizeof(int) * MAX * MAX);
         readChars(current_key);
 	int num_counter = 0;
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
 		printf("%s", current_key);
-		memset(process_info, 0, sizeof(int) * MAX);
+		memset(process_info, '\0', sizeof(int) * MAX);
 		num_counter = readIntegers(&current_num) ? current_num : 0;
 		while(num_counter--) {
 		    readIntegers(&current_num);
 		    printf(" %d", current_num);
 		    if (!process_info[current_num - 1]) {
-                process_info[current_num - 1] = 1;
+                        process_info[current_num - 1] = 1;
 		    }
 		}
 		putchar('\n');
 		for (int i = 0; i < MAX; ++i) {
-			printf("%d ", process_info[i]);
+                    printf("%d ", process_info[i]);
 		}
                 int current_bak_index = 0;
 		if (current_key[0] == 'I') {
@@ -112,6 +118,14 @@ int main() {
                             copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
 			}
 		    }
+		    if (current_key[1] == 'C') {
+                        for (int j = 0; j < col_num; ++j) {
+                            if (process_info[j]) {
+                                copy_col(blank_set,work_sheet_bak[0][current_bak_index++]);
+                            }
+                            copy_col(work_sheet[0][j],work_sheet_bak[0][current_bak_index++]);
+                        }
+                    }
 		}
                 copy_back();
 	// } else if (strcmp(current_key, "EX")) {
@@ -120,7 +134,7 @@ int main() {
 		printf("%s", current_key);
 		// printf(" This is an exchange!\n");
 		int *index_tmp = (int*)malloc(sizeof(int)*5);
-		int *index_tmp_start = index_tmp;
+		// int *index_tmp_start = index_tmp;
 		while(readIntegers(&current_num)) {
 			printf(" %d", current_num);
 			*index_tmp++ = current_num;
@@ -130,14 +144,14 @@ int main() {
 		*index_tmp++ = current_num;
 		*index_tmp = '\0';
 		index_tmp -= 4;
-		printf(" %d %d",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
+		printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
 		// int tmp = work_sheet[index_tmp[2]][index_tmp[3]];
 		// work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[0]][index_tmp[1]];
 		// work_sheet[index_tmp[0]][index_tmp[1]] = tmp;
 		work_sheet[index_tmp[2]][index_tmp[3]] += work_sheet[index_tmp[0]][index_tmp[1]];
 		work_sheet[index_tmp[0]][index_tmp[1]] = work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
 		work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
-		printf(" %d %d",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
+		printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
 		// index_tmp = index_tmp_start;
 		/* while (*index_tmp != '\0') {
 		    printf(" %d", *index_tmp++);
