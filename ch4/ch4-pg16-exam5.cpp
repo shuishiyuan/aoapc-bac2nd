@@ -155,9 +155,9 @@ int main() {
 		int *index_tmp = (int*)malloc(sizeof(int)*5);
 		// int *index_tmp_start = index_tmp;
 		while(readIntegers(&current_num)) {
-			printf(" %d", current_num);
-			*index_tmp++ = current_num;
-			continue;
+		    printf(" %d", current_num);
+		    *index_tmp++ = current_num;
+		    continue;
 		}
 		printf(" %d", current_num);
 		*index_tmp++ = current_num;
