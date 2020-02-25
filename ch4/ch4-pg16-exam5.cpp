@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #define MAX 50
@@ -121,9 +122,27 @@ int main() {
 		    if (current_key[1] == 'C') {
                         for (int j = 0; j < col_num; ++j) {
                             if (process_info[j]) {
-                                copy_col(blank_set,work_sheet_bak[0][current_bak_index++]);
+                                copy_col(blank_set,work_sheet_bak[0] + current_bak_index++);
                             }
-                            copy_col(work_sheet[0][j],work_sheet_bak[0][current_bak_index++]);
+                            copy_col(work_sheet[0] + j, work_sheet_bak[0] + current_bak_index++);
+                        }
+                    }
+		}
+		if (current_key[0] == 'D') {
+		    if (current_key[1] == 'R') {
+			for (int i = 0; i < row_num; ++i) {
+                            if (process_info[i]) {
+                                continue;
+                            }
+                            copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
+			}
+		    }
+		    if (current_key[1] == 'C') {
+                        for (int j = 0; j < col_num; ++j) {
+                            if (process_info[j]) {
+                                continue;
+                            }
+                            copy_col(work_sheet[0] + j,work_sheet_bak[0] + current_bak_index++);
                         }
                     }
 		}
@@ -149,8 +168,10 @@ int main() {
 		// work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[0]][index_tmp[1]];
 		// work_sheet[index_tmp[0]][index_tmp[1]] = tmp;
 		work_sheet[index_tmp[2]][index_tmp[3]] += work_sheet[index_tmp[0]][index_tmp[1]];
-		work_sheet[index_tmp[0]][index_tmp[1]] = work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
-		work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
+		work_sheet[index_tmp[0]][index_tmp[1]] = 
+			work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
+		work_sheet[index_tmp[2]][index_tmp[3]] = 
+			work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
 		printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
 		// index_tmp = index_tmp_start;
 		/* while (*index_tmp != '\0') {
