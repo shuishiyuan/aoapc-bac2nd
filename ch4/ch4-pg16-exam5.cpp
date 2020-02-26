@@ -200,14 +200,17 @@ int main() {
     printf("There are %d queries!\n", query_num);
     while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
-	for (int i = 0; i < row_num; ++i) {
-	    for (int j = 0; j < col_num; ++j) {
+	bool is_hit = false;
+	for (int i = 0; i < row_num && !is_hit; ++i) {
+	    for (int j = 0; j < col_num && !is_hit; ++j) {
 		if (work_sheet[i - 1][j - 1] / MOD == row_pos + 1 &&
 		    work_sheet[i - 1][j - 1] % MOD == col_pos + 1) {
 			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i - 1, j - 1);
+			is_hit = true;
 		}
 	    }
 	}
+	printf("Cell data in (%d, %d) GONE\n", row_pos, col_pos);
     }
     // Test For Push 2019/08/26.
     return 0;
