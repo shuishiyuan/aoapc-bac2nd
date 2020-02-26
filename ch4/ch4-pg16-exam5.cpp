@@ -203,9 +203,9 @@ int main() {
 	bool is_hit = false;
 	for (int i = 0; i < row_num && !is_hit; ++i) {
 	    for (int j = 0; j < col_num && !is_hit; ++j) {
-		if (work_sheet[i - 1][j - 1] / MOD == row_pos + 1 &&
-		    work_sheet[i - 1][j - 1] % MOD == col_pos + 1) {
-			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i - 1, j - 1);
+		if (work_sheet[i][j] / MOD == row_pos &&
+		    work_sheet[i][j] % MOD == col_pos) {
+			printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i + 1, j + 1);
 			is_hit = true;
 		}
 	    }
