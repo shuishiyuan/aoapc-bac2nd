@@ -95,60 +95,60 @@ int main() {
         readChars(current_key);
 	int num_counter = 0;
 	if (current_key[0] == 'I' || current_key[0] == 'D') {
-		printf("%s", current_key);
-		memset(process_info, '\0', sizeof(int) * MAX);
-		num_counter = readIntegers(&current_num) ? current_num : 0;
-		while(num_counter--) {
-		    readIntegers(&current_num);
-		    printf(" %d", current_num);
-		    if (!process_info[current_num - 1]) {
-                        process_info[current_num - 1] = 1;
-		    }
+	    printf("%s", current_key);
+	    memset(process_info, '\0', sizeof(int) * MAX);
+	    num_counter = readIntegers(&current_num) ? current_num : 0;
+	    while(num_counter--) {
+		readIntegers(&current_num);
+		printf(" %d", current_num);
+		if (!process_info[current_num - 1]) {
+		    process_info[current_num - 1] = 1;
 		}
-		putchar('\n');
-		for (int i = 0; i < MAX; ++i) {
-                    printf("%d ", process_info[i]);
-		}
-                int current_bak_index = 0;
-		if (current_key[0] == 'I') {
-		    if (current_key[1] == 'R') {
-			for (int i = 0; i < row_num; ++i) {
-                            if (process_info[i]) {
-                                copy_line(blank_set, work_sheet_bak[current_bak_index++]);
-                            }
-                            copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
+	    }
+	    putchar('\n');
+	    for (int i = 0; i < MAX; ++i) {
+		printf("%d ", process_info[i]);
+	    }
+	    int current_bak_index = 0;
+	    if (current_key[0] == 'I') {
+		if (current_key[1] == 'R') {
+		    for (int i = 0; i < row_num; ++i) {
+			if (process_info[i]) {
+			    copy_line(blank_set, work_sheet_bak[current_bak_index++]);
 			}
+			copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
 		    }
-		    if (current_key[1] == 'C') {
-                        for (int j = 0; j < col_num; ++j) {
-                            if (process_info[j]) {
-                                copy_col(blank_set,work_sheet_bak[0] + current_bak_index++);
-                            }
-                            copy_col(work_sheet[0] + j, work_sheet_bak[0] + current_bak_index++);
-                        }
-                    }
 		}
-		if (current_key[0] == 'D') {
-		    if (current_key[1] == 'R') {
-			for (int i = 0; i < row_num; ++i) {
-                            if (process_info[i]) {
-                                continue;
-                            }
-                            copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
+		if (current_key[1] == 'C') {
+		    for (int j = 0; j < col_num; ++j) {
+			if (process_info[j]) {
+			    copy_col(blank_set,work_sheet_bak[0] + current_bak_index++);
 			}
+			copy_col(work_sheet[0] + j, work_sheet_bak[0] + current_bak_index++);
 		    }
-		    if (current_key[1] == 'C') {
-                        for (int j = 0; j < col_num; ++j) {
-                            if (process_info[j]) {
-                                continue;
-                            }
-                            copy_col(work_sheet[0] + j,work_sheet_bak[0] + current_bak_index++);
-                        }
-                    }
 		}
-                copy_back();
-	// } else if (strcmp(current_key, "EX")) {
-		//continue;
+	    }
+	    if (current_key[0] == 'D') {
+		if (current_key[1] == 'R') {
+		    for (int i = 0; i < row_num; ++i) {
+			if (process_info[i]) {
+			    continue;
+			}
+			copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
+		    }
+		}
+		if (current_key[1] == 'C') {
+		    for (int j = 0; j < col_num; ++j) {
+			if (process_info[j]) {
+			    continue;
+			}
+			copy_col(work_sheet[0] + j,work_sheet_bak[0] + current_bak_index++);
+		    }
+		}
+	    }
+	    copy_back();
+    // } else if (strcmp(current_key, "EX")) {
+	    //continue;
 	} else if (current_key[0] == 'E' && current_key[1] == 'X') {
 		printf("%s", current_key);
 		// printf(" This is an exchange!\n");
