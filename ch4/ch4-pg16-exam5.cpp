@@ -51,14 +51,14 @@ void cat_current_array() {
 }
 
 void copy_line(long int *p_from, long int *p_to) {
-    for (long int j = 0; j < col_num; ++j) {
+    for (long int j = 0; j < MAX; ++j) {
         p_to[j] = p_from[j];
     }
 }
 
 void copy_col(long int *p_from, long int *p_to) {
-    for (long int i = 0; i < row_num; ++i) {
-        p_to[i * col_num] = p_from[i * col_num];
+    for (long int i = 0; i < MAX; ++i) {
+        p_to[i * MAX] = p_from[i * MAX];
     }
 }
 
@@ -78,18 +78,19 @@ int main() {
 
 #ifdef LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
+    freopen("data/ch4-exam5.out", "w", stdout);
 #endif
     scanf("%d %d\n", &row_num, &col_num);
     scanf("%d\n", &operation_num);
-    for (int i = 0; i < row_num; ++i) {
-        for (int j = 0; j < col_num; ++j) {
+    for (int i = 0; i < MAX; ++i) {
+        for (int j = 0; j < MAX; ++j) {
             work_sheet[i][j] = (i + 1) * MOD + (j + 1);
         }
         blank_set[i] = HIGH_VAL;
     }
     
     printf("The initialized work sheet is :\n");
-    cat_current_array();
+    // cat_current_array();
 
     char current_key[4];
     int current_num;
@@ -189,7 +190,7 @@ int main() {
     }
 
     printf("The final work sheet is :\n");
-    cat_current_array();
+    // cat_current_array();
 
     int row_pos;
     int col_pos;
