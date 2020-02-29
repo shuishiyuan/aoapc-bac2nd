@@ -117,37 +117,41 @@ int main() {
             if (current_key[0] == 'I') {
                 if (current_key[1] == 'R') {
                     for (int i = 0; i < row_num; ++i) {
-                    if (process_info[i]) {
-                        copy_line(blank_set, work_sheet_bak[current_bak_index++]);
+                        if (process_info[i]) {
+                            copy_line(blank_set, work_sheet_bak[current_bak_index++]);
+                        }
+                        copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
                     }
-                    copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
-                    }
+                    row_num = current_bak_index;
                 }
                 if (current_key[1] == 'C') {
                     for (int j = 0; j < col_num; ++j) {
-                    if (process_info[j]) {
-                        copy_col(blank_set,work_sheet_bak[0] + current_bak_index++);
+                        if (process_info[j]) {
+                            copy_col(blank_set,work_sheet_bak[0] + current_bak_index++);
+                        }
+                        copy_col(work_sheet[0] + j, work_sheet_bak[0] + current_bak_index++);
                     }
-                    copy_col(work_sheet[0] + j, work_sheet_bak[0] + current_bak_index++);
-                    }
+                    col_num = current_bak_index;
                 }
             }
             if (current_key[0] == 'D') {
                 if (current_key[1] == 'R') {
                     for (int i = 0; i < row_num; ++i) {
-                    if (process_info[i]) {
-                        continue;
+                        if (process_info[i]) {
+                            continue;
+                        }
+                        copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
                     }
-                    copy_line(work_sheet[i], work_sheet_bak[current_bak_index++]);
-                    }
+                    row_num = current_bak_index;
                 }
                 if (current_key[1] == 'C') {
                     for (int j = 0; j < col_num; ++j) {
-                    if (process_info[j]) {
-                        continue;
+                        if (process_info[j]) {
+                            continue;
+                        }
+                        copy_col(work_sheet[0] + j,work_sheet_bak[0] + current_bak_index++);
                     }
-                    copy_col(work_sheet[0] + j,work_sheet_bak[0] + current_bak_index++);
-                    }
+                    col_num = current_bak_index;
                 }
             }
             copy_back();
@@ -201,11 +205,11 @@ int main() {
         bool is_hit = false;
         for (int i = 0; i < row_num && !is_hit; ++i) {
             for (int j = 0; j < col_num && !is_hit; ++j) {
-            if (work_sheet[i][j] / MOD == row_pos &&
-                work_sheet[i][j] % MOD == col_pos) {
-                printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i + 1, j + 1);
-                is_hit = true;
-            }
+                if (work_sheet[i][j] / MOD == row_pos &&
+                    work_sheet[i][j] % MOD == col_pos) {
+                    printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i + 1, j + 1);
+                    is_hit = true;
+                }
             }
         }
         if (!is_hit) {
