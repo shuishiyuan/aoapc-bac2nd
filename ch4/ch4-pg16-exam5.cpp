@@ -72,7 +72,6 @@ void copy_back() {
 }
 
 int main() {
-    printf("Solution a of Spreadsheet Tracking!\n");
     int operation_num;
     int query_num;
 
@@ -80,6 +79,7 @@ int main() {
     freopen("data/ch4-exam5.in", "r", stdin);
     freopen("data/ch4-exam5.out", "w", stdout);
 #endif
+    printf("Spreadsheet #1\n");
     scanf("%d %d\n", &row_num, &col_num);
     scanf("%d\n", &operation_num);
     for (int i = 0; i < MAX; ++i) {
@@ -89,7 +89,7 @@ int main() {
         blank_set[i] = HIGH_VAL;
     }
     
-    printf("The initialized work sheet is :\n");
+    // printf("The initialized work sheet is :\n");
     // cat_current_array();
 
     char current_key[4];
@@ -99,20 +99,20 @@ int main() {
         readChars(current_key);
         int num_counter = 0;
         if (current_key[0] == 'I' || current_key[0] == 'D') {
-            printf("%s", current_key);
+            // printf("%s", current_key);
             memset(process_info, '\0', sizeof(long int) * MAX);
             num_counter = readIntegers(&current_num) ? current_num : 0;
             while(num_counter--) {
                 readIntegers(&current_num);
-                printf(" %d", current_num);
+                // printf(" %d", current_num);
                 if (!process_info[current_num - 1]) {
                     process_info[current_num - 1] = 1;
                 }
             }
-            putchar('\n');
-            for (int i = 0; i < MAX; ++i) {
+            // putchar('\n');
+            /* for (int i = 0; i < MAX; ++i) {
                 printf("%ld ", process_info[i]);
-            }
+            } */
             int current_bak_index = 0;
             if (current_key[0] == 'I') {
                 if (current_key[1] == 'R') {
@@ -158,20 +158,20 @@ int main() {
         // } else if (strcmp(current_key, "EX")) {
             //continue;
         } else if (current_key[0] == 'E' && current_key[1] == 'X') {
-            printf("%s", current_key);
+            // printf("%s", current_key);
             // printf(" This is an exchange!\n");
             int *index_tmp = (int*)malloc(sizeof(int)*5);
             // int *index_tmp_start = index_tmp;
             while(readIntegers(&current_num)) {
-                printf(" %d", current_num);
+                // printf(" %d", current_num);
                 *index_tmp++ = current_num;
                 continue;
             }
-            printf(" %d", current_num);
+            // printf(" %d", current_num);
             *index_tmp++ = current_num;
             *index_tmp = '\0';
             index_tmp -= 4;
-            printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
+            // printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
             // int tmp = work_sheet[index_tmp[2]][index_tmp[3]];
             // work_sheet[index_tmp[2]][index_tmp[3]] = work_sheet[index_tmp[0]][index_tmp[1]];
             // work_sheet[index_tmp[0]][index_tmp[1]] = tmp;
@@ -180,7 +180,7 @@ int main() {
                 work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
             work_sheet[index_tmp[2]][index_tmp[3]] = 
                 work_sheet[index_tmp[2]][index_tmp[3]] - work_sheet[index_tmp[0]][index_tmp[1]];
-            printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
+            // printf(" %ld %ld",work_sheet[index_tmp[0]][index_tmp[1]], work_sheet[index_tmp[2]][index_tmp[3]]);
             // index_tmp = index_tmp_start;
             /* while (*index_tmp != '\0') {
                 printf(" %d", *index_tmp++);
@@ -189,17 +189,17 @@ int main() {
         }
             // printf(" %d\n", current_num);
         // memset(current_key, '\0', sizeof(char) * 4);
-        putchar('\n');
-        cat_current_array();
+        // putchar('\n');
+        // cat_current_array();
     }
 
-    printf("The final work sheet is :\n");
+    // printf("The final work sheet is :\n");
     // cat_current_array();
 
     int row_pos;
     int col_pos;
     readIntegers(&query_num);
-    printf("There are %d queries!\n", query_num);
+    // printf("There are %d queries!\n", query_num);
     while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
         bool is_hit = false;
@@ -207,13 +207,13 @@ int main() {
             for (int j = 0; j < col_num && !is_hit; ++j) {
                 if (work_sheet[i][j] / MOD == row_pos &&
                     work_sheet[i][j] % MOD == col_pos) {
-                    printf("Cell data in (%d, %d) moved to (%d, %d)\n", row_pos, col_pos, i + 1, j + 1);
+                    printf("Cell data in (%d,%d) moved to (%d,%d)\n", row_pos, col_pos, i + 1, j + 1);
                     is_hit = true;
                 }
             }
         }
         if (!is_hit) {
-            printf("Cell data in (%d, %d) GONE\n", row_pos, col_pos);
+            printf("Cell data in (%d,%d) GONE\n", row_pos, col_pos);
         }
     }
     // Test For Push 2019/08/26.
