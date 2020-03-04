@@ -50,15 +50,13 @@ void cat_current_array() {
     }
 }
 
-void copy_line(long int *p_from, long int *p_to) {
-    for (long int j = 0; j < MAX; ++j) {
-        p_to[j] = p_from[j];
-    }
-}
-
-void copy_col(long int *p_from, long int *p_to) {
-    for (long int i = 0; i < MAX; ++i) {
-        p_to[i * MAX] = p_from[i * MAX];
+void copy_meta(long int *p_from, long int *p_to, char flag) {
+    for (int i = 0; i < MAX; ++i) {
+        if (flag == 'R') {
+            p_to[i] = p_from[i];
+        } else if (flag == 'C') {
+            p_to[i * MAX] = p_from[i * MAX];
+        }
     }
 }
 
@@ -112,18 +110,18 @@ int main() {
                 if (key[1] == 'R') {
                     for (int i = 0; i < row_num; ++i) {
                         if (hot_idx[i]) {
-                            copy_line(pure_set, ws_bak[bak_idx++]);
+                            copy_meta(pure_set, ws_bak[bak_idx++], 'R');
                         }
-                        copy_line(ws[i], ws_bak[bak_idx++]);
+                        copy_meta(ws[i], ws_bak[bak_idx++], 'R');
                     }
                     row_num = bak_idx;
                 }
                 if (key[1] == 'C') {
                     for (int j = 0; j < col_num; ++j) {
                         if (hot_idx[j]) {
-                            copy_col(pure_set,ws_bak[0] + bak_idx++);
+                            copy_meta(pure_set,ws_bak[0] + bak_idx++, 'C');
                         }
-                        copy_col(ws[0] + j, ws_bak[0] + bak_idx++);
+                        copy_meta(ws[0] + j, ws_bak[0] + bak_idx++, 'C');
                     }
                     col_num = bak_idx;
                 }
@@ -134,7 +132,7 @@ int main() {
                         if (hot_idx[i]) {
                             continue;
                         }
-                        copy_line(ws[i], ws_bak[bak_idx++]);
+                        copy_meta(ws[i], ws_bak[bak_idx++], 'R');
                     }
                     row_num = bak_idx;
                 }
@@ -143,7 +141,7 @@ int main() {
                         if (hot_idx[j]) {
                             continue;
                         }
-                        copy_col(ws[0] + j,ws_bak[0] + bak_idx++);
+                        copy_meta(ws[0] + j,ws_bak[0] + bak_idx++, 'C');
                     }
                     col_num = bak_idx;
                 }
