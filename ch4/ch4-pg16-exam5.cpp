@@ -141,7 +141,7 @@ int main() {
                         if (hot_idx[j]) {
                             continue;
                         }
-                        copy_meta(ws[0] + j,ws_bak[0] + bak_idx++, 'C');
+                        copy_meta(ws[0] + j, ws_bak[0] + bak_idx++, 'C');
                     }
                     // col_num = bak_idx;
                 }
