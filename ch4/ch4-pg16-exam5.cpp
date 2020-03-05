@@ -108,42 +108,42 @@ int main() {
             int bak_idx = 0;
             if (key[0] == 'I') {
                 if (key[1] == 'R') {
-                    for (int i = 0; i < row_num; ++i) {
+                    for (int i = 0; i < MAX && bak_idx < MAX; ++i) {
                         if (hot_idx[i]) {
                             copy_meta(pure_set, ws_bak[bak_idx++], 'R');
                         }
                         copy_meta(ws[i], ws_bak[bak_idx++], 'R');
                     }
-                    row_num = bak_idx;
+                    // row_num = bak_idx;
                 }
                 if (key[1] == 'C') {
-                    for (int j = 0; j < col_num; ++j) {
+                    for (int j = 0; j < MAX && bak_idx < MAX; ++j) {
                         if (hot_idx[j]) {
                             copy_meta(pure_set,ws_bak[0] + bak_idx++, 'C');
                         }
                         copy_meta(ws[0] + j, ws_bak[0] + bak_idx++, 'C');
                     }
-                    col_num = bak_idx;
+                    // col_num = bak_idx;
                 }
             }
             if (key[0] == 'D') {
                 if (key[1] == 'R') {
-                    for (int i = 0; i < row_num; ++i) {
+                    for (int i = 0; i < MAX && bak_idx < MAX; ++i) {
                         if (hot_idx[i]) {
                             continue;
                         }
                         copy_meta(ws[i], ws_bak[bak_idx++], 'R');
                     }
-                    row_num = bak_idx;
+                    // row_num = bak_idx;
                 }
                 if (key[1] == 'C') {
-                    for (int j = 0; j < col_num; ++j) {
+                    for (int j = 0; j < MAX && bak_idx < MAX; ++j) {
                         if (hot_idx[j]) {
                             continue;
                         }
                         copy_meta(ws[0] + j,ws_bak[0] + bak_idx++, 'C');
                     }
-                    col_num = bak_idx;
+                    // col_num = bak_idx;
                 }
             }
             copy_back();
