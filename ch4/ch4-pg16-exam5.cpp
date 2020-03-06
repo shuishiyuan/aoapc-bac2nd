@@ -13,6 +13,7 @@ long int hot_idx[MAX];
 long int pure_set[MAX];
 int row_num;
 int col_num;
+int cat_idx = 0;
 
 bool readChars(char *keys) {
     char c;
@@ -42,6 +43,7 @@ bool readIntegers(int *number) {
 }
 
 void cat_current_array() {
+    printf("The %d time of printed work sheet is :\n", cat_idx++);
     for (int i = 0; i < CAT_MAX; ++i) {
         for (int j = 0; j < CAT_MAX; ++j) {
             printf("%ld ", ws[i][j]);
@@ -87,7 +89,6 @@ int main() {
         pure_set[i] = HIGH_VAL;
     }
     
-    // printf("The initialized work sheet is :\n");
     // cat_current_array();
 
     char key[4];
@@ -106,46 +107,17 @@ int main() {
                 }
             }
             int bak_idx = 0;
-            if (key[0] == 'I') {
-                if (key[1] == 'R') {
-                    for (int i = 0; i < MAX && bak_idx < MAX; ++i) {
-                        if (hot_idx[i]) {
-                            copy_meta(pure_set, ws_bak[bak_idx++], 'R');
-                        }
-                        copy_meta(ws[i], ws_bak[bak_idx++], 'R');
+            for (int i = 0; i < MAX && bak_idx < MAX; ++i) {
+                if (hot_idx[i]) {
+                    if (key[0] == 'I') {
+                        copy_meta(pure_set, ws_bak[bak_idx++], key[1]);
+                    } else if (key[0] == 'D') {
+                        continue;
                     }
-                    // row_num = bak_idx;
                 }
-                if (key[1] == 'C') {
-                    for (int j = 0; j < MAX && bak_idx < MAX; ++j) {
-                        if (hot_idx[j]) {
-                            copy_meta(pure_set,ws_bak[0] + bak_idx++, 'C');
-                        }
-                        copy_meta(ws[0] + j, ws_bak[0] + bak_idx++, 'C');
-                    }
-                    // col_num = bak_idx;
-                }
+                copy_meta(ws[i], ws_bak[bak_idx++], key[1]);
             }
-            if (key[0] == 'D') {
-                if (key[1] == 'R') {
-                    for (int i = 0; i < MAX && bak_idx < MAX; ++i) {
-                        if (hot_idx[i]) {
-                            continue;
-                        }
-                        copy_meta(ws[i], ws_bak[bak_idx++], 'R');
-                    }
-                    // row_num = bak_idx;
-                }
-                if (key[1] == 'C') {
-                    for (int j = 0; j < MAX && bak_idx < MAX; ++j) {
-                        if (hot_idx[j]) {
-                            continue;
-                        }
-                        copy_meta(ws[0] + j, ws_bak[0] + bak_idx++, 'C');
-                    }
-                    // col_num = bak_idx;
-                }
-            }
+            // row_num = bak_idx;
             copy_back();
         } else if (key[0] == 'E' && key[1] == 'X') {
             int *swap = (int*)malloc(sizeof(int)*5);
@@ -161,6 +133,7 @@ int main() {
             ws[swap[0]][swap[1]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
             ws[swap[2]][swap[3]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
         }
+        cat_current_array();
     }
 
     int row_pos;
@@ -169,8 +142,8 @@ int main() {
     while(query_num--) {
         scanf("%d %d\n", &row_pos, &col_pos);
         bool is_hit = false;
-        for (int i = 0; i < row_num && !is_hit; ++i) {
-            for (int j = 0; j < col_num && !is_hit; ++j) {
+        for (int i = 0; i < MAX && !is_hit; ++i) {
+            for (int j = 0; j < MAX && !is_hit; ++j) {
                 if (ws[i][j] / MOD == row_pos &&
                     ws[i][j] % MOD == col_pos) {
                     printf("Cell data in (%d,%d) moved to (%d,%d)\n"
