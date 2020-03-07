@@ -106,18 +106,19 @@ int main() {
                     hot_idx[num - 1] = 1;
                 }
             }
-            int bak_idx = 0;
-            for (int i = 0; i < MAX && bak_idx < MAX; ++i) {
+            int bak_i = 0;
+            for (int i = 0; i < MAX && bak_i < MAX; ++i) {
                 if (hot_idx[i]) {
                     if (key[0] == 'I') {
-                        copy_meta(pure_set, ws_bak[bak_idx++], key[1]);
+                        copy_meta(pure_set, ws_bak[bak_i++], key[1]);
                     } else if (key[0] == 'D') {
                         continue;
                     }
                 }
-                copy_meta(ws[i], ws_bak[bak_idx++], key[1]);
+                copy_meta(ws[i], ws_bak[bak_i++], key[1]);
             }
             // row_num = bak_idx;
+            cat_current_array();
             copy_back();
         } else if (key[0] == 'E' && key[1] == 'X') {
             int *swap = (int*)malloc(sizeof(int)*5);
@@ -133,7 +134,6 @@ int main() {
             ws[swap[0]][swap[1]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
             ws[swap[2]][swap[3]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
         }
-        cat_current_array();
     }
 
     int row_pos;
