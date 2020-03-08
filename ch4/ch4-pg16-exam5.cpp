@@ -52,12 +52,16 @@ void cat_current_array() {
     }
 }
 
-void copy_meta(long int *p_from, long int *p_to, char flag) {
+void copy_meta(long int *p_frm, int idx_frm, int idx_to, char flag) {
     for (int i = 0; i < MAX; ++i) {
         if (flag == 'R') {
-            p_to[i] = p_from[i];
+            ws_bak[idx_to][i] = p_frm[i];
         } else if (flag == 'C') {
-            p_to[i * MAX] = p_from[i * MAX];
+            if (idx_frm < 0) {
+                ws_bak[i][idx_to] = p_frm[i];
+            } else {
+                ws_bak[i][idx_to] = ws[i][idx_frm];
+            }
         }
     }
 }
@@ -110,15 +114,14 @@ int main() {
             for (int i = 0; i < MAX && bak_i < MAX; ++i) {
                 if (hot_idx[i]) {
                     if (key[0] == 'I') {
-                        copy_meta(pure_set, ws_bak[bak_i++], key[1]);
+                        copy_meta(pure_set, -1, bak_i++, key[1]);
                     } else if (key[0] == 'D') {
                         continue;
                     }
                 }
-                copy_meta(ws[i], ws_bak[bak_i++], key[1]);
+                copy_meta(ws[i], i, bak_i++, key[1]);
             }
             // row_num = bak_idx;
-            cat_current_array();
             copy_back();
         } else if (key[0] == 'E' && key[1] == 'X') {
             int *swap = (int*)malloc(sizeof(int)*5);
@@ -134,6 +137,7 @@ int main() {
             ws[swap[0]][swap[1]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
             ws[swap[2]][swap[3]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
         }
+        // cat_current_array();
     }
 
     int row_pos;
