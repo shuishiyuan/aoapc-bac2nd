@@ -52,15 +52,19 @@ void cat_current_array() {
     }
 }
 
-void copy_meta(long int *p_frm, int idx_frm, int idx_to, char flag) {
+void copy_meta(int idx_src, int idx_bak, char flag) {
     for (int i = 0; i < MAX; ++i) {
         if (flag == 'R') {
-            ws_bak[idx_to][i] = p_frm[i];
-        } else if (flag == 'C') {
-            if (idx_frm < 0) {
-                ws_bak[i][idx_to] = p_frm[i];
+            if (idx_src < 0) {
+                ws_bak[idx_bak][i] = pure_set[i];
             } else {
-                ws_bak[i][idx_to] = ws[i][idx_frm];
+                ws_bak[idx_bak][i] = ws[idx_src][i];
+            }
+        } else if (flag == 'C') {
+            if (idx_src < 0) {
+                ws_bak[i][idx_bak] = pure_set[i];
+            } else {
+                ws_bak[i][idx_bak] = ws[i][idx_src];
             }
         }
     }
@@ -110,18 +114,18 @@ int main() {
                     hot_idx[num - 1] = 1;
                 }
             }
-            int bak_i = 0;
-            for (int i = 0; i < MAX && bak_i < MAX; ++i) {
-                if (hot_idx[i]) {
+            int idx_src = 0, idx_bak = 0;
+            while (idx_src < MAX && idx_bak < MAX) {
+                if (hot_idx[idx_src]) {
                     if (key[0] == 'I') {
-                        copy_meta(pure_set, -1, bak_i++, key[1]);
+                        copy_meta(-1, idx_bak++, key[1]);
                     } else if (key[0] == 'D') {
+                        idx_src++;
                         continue;
                     }
                 }
-                copy_meta(ws[i], i, bak_i++, key[1]);
+                copy_meta(idx_src++, idx_bak++, key[1]);
             }
-            // row_num = bak_idx;
             copy_back();
         } else if (key[0] == 'E' && key[1] == 'X') {
             int *swap = (int*)malloc(sizeof(int)*5);
