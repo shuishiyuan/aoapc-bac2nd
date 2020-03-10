@@ -129,7 +129,6 @@ int main() {
             copy_back();
         } else if (key[0] == 'E' && key[1] == 'X') {
             int *swap = (int*)malloc(sizeof(int)*5);
-            // int *swap_start = swap;
             while(readIntegers(&num)) {
                 *swap++ = num;
                 continue;
@@ -164,6 +163,6 @@ int main() {
             printf("Cell data in (%d,%d) GONE\n", row_pos, col_pos);
         }
     }
-    // Test For Push 2019/08/26.
+    // Test For Push 2019/08/26 @JeJu Island of Korea.
     return 0;
 }
