@@ -42,7 +42,7 @@ bool readIntegers(int *number) {
     return ret_val;
 }
 
-void cat_current_array() {
+void log_cat() {
     printf("The %d time of printed work sheet is :\n", cat_idx++);
     for (int i = 0; i < CAT_MAX; ++i) {
         for (int j = 0; j < CAT_MAX; ++j) {
@@ -97,7 +97,7 @@ int main() {
         pure_set[i] = HIGH_VAL;
     }
     
-    // cat_current_array();
+    // log_cat();
 
     char key[4];
     int num;
@@ -141,7 +141,7 @@ int main() {
             ws[swap[0]][swap[1]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
             ws[swap[2]][swap[3]] = ws[swap[2]][swap[3]] - ws[swap[0]][swap[1]];
         }
-        // cat_current_array();
+        // log_cat();
     }
 
     int row_pos;
