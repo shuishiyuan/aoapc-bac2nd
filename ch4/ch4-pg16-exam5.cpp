@@ -7,10 +7,10 @@
 #define MOD 1000
 #define HIGH_VAL 65536
 
-long int ws[MAX][MAX];
-long int ws_bak[MAX][MAX];
-long int hot_idx[MAX];
-long int pure_set[MAX];
+int ws[MAX][MAX];
+int ws_bak[MAX][MAX];
+int hot_idx[MAX];
+int pure_set[MAX];
 int row_num;
 int col_num;
 int cat_idx = 0;
@@ -46,7 +46,7 @@ void cat_current_array() {
     printf("The %d time of printed work sheet is :\n", cat_idx++);
     for (int i = 0; i < CAT_MAX; ++i) {
         for (int j = 0; j < CAT_MAX; ++j) {
-            printf("%ld ", ws[i][j]);
+            printf("%d ", ws[i][j]);
         }
         putchar('\n');
     }
@@ -71,7 +71,7 @@ void copy_meta(int idx_src, int idx_bak, char flag) {
 }
 
 void copy_back() {
-    memset(ws, '\0', sizeof(long int) * MAX * MAX);
+    memset(ws, '\0', sizeof(int) * MAX * MAX);
     for (int i = 0; i < MAX; ++i) {
         for (int j = 0; j < MAX; ++j) {
             ws[i][j] = ws_bak[i][j];
@@ -102,11 +102,11 @@ int main() {
     char key[4];
     int num;
     while(operation_num--) {
-        memset(ws_bak, '\0', sizeof(long int) * MAX * MAX);
+        memset(ws_bak, '\0', sizeof(int) * MAX * MAX);
         readChars(key);
         int num_cnt = 0;
         if (key[0] == 'I' || key[0] == 'D') {
-            memset(hot_idx, '\0', sizeof(long int) * MAX);
+            memset(hot_idx, '\0', sizeof(int) * MAX);
             num_cnt = readIntegers(&num) ? num : 0;
             while(num_cnt--) {
                 readIntegers(&num);
