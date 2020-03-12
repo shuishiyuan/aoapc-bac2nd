@@ -12,8 +12,13 @@ int *prc;
 
 bool read_char(char *res) {
     printf("reading chars\n");
-    while(false) {
-        ;
+    char c;
+    while((c = getchar()) != '\20' && c != '\n') {
+        *res++ = c;
+    }
+    *res = '\0';
+    if (c == '\n') {
+        return false;
     }
     return true;
 }
