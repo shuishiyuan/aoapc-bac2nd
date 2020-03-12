@@ -10,6 +10,14 @@ int prc_num;
 
 int *prc;
 
+bool read_char(char *res) {
+    printf("reading chars\n");
+    while(false) {
+        ;
+    }
+    return true;
+}
+
 int main() {
     printf("Spreadsheet #1\n");
 #if LOCAL
@@ -21,8 +29,11 @@ int main() {
     printf("The input col number is: %d\n", col_num);
     printf("The input process number is: %d\n", prc_num);
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
+    char *key = (char*)malloc(3 * sizeof(char));
     for (int i = 0; i < prc_num; ++i) {
-        ;
+        if (!read_char(key)) {
+            continue;
+        }
     }
     return 0;
 }
