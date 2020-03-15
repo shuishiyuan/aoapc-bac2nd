@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <string.h>
 
 #define MAX 50
 #define MAX_INT_W 10
@@ -22,13 +24,14 @@ bool read_char(char *res) {
 }
 
 bool read_num(int *res) {
+    *res = 0;
     char req[MAX_INT_W];
     bool rtv = false;
     rtv = read_char(req);
 
-    int pow = str_len(req);
-    while(--pow >= 0) {
-        *res += req[pow] * power(2, pow);
+    int exp = strlen(req);
+    while(--exp >= 0) {
+        *res += req[exp] * pow(10, exp);
     }
     return rtv;
 }
@@ -46,13 +49,12 @@ int main() {
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
     char key[3];
     for (int i = 0; i < prc_num; ++i) {
-        read_char(key);
-        if (key[0] == 0x00) {
+        if (!read_char(key)) {
             --i;
             continue;
         }
         printf("%s ", key);
-        int num = 0;'
+        int num;
         while (read_num(&num)) {
             printf("%d ", num);
         }
