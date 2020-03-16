@@ -29,9 +29,9 @@ bool read_num(int *res) {
     bool rtv = false;
     rtv = read_char(req);
 
-    int exp = strlen(req);
-    while(--exp >= 0) {
-        *res += req[exp] * pow(10, exp);
+    int exp = strlen(req) - 1;
+    for (int i = 0; i <= exp; ++i) {
+        *res += (req[i] - 0x30) * pow(10, exp - i);
     }
     return rtv;
 }
