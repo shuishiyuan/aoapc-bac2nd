@@ -10,6 +10,7 @@ int row_num;
 int col_num;
 int prc_num;
 int *prc;
+char *prc_key;
 
 bool read_char(char *res) {
     char c;
@@ -47,16 +48,20 @@ int main() {
     printf("The input col number is: %d\n", col_num);
     printf("The input process number is: %d\n", prc_num);
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
+    prc_key = (char*)malloc(prc_num * 3 * sizeof(char));
     char key[3];
     for (int i = 0; i < prc_num; ++i) {
         if (!read_char(key)) {
             --i;
             continue;
         }
-        printf("%s ", key);
+        sprintf(prc_key + 3 * i, "%s", key);
+        printf("%s ", prc_key + 3 * i);
         int num;
+        int j = 0;
         while (read_num(&num)) {
-            printf("%d ", num);
+            prc[MAX * i + j] = num;;
+            printf("%d ", prc[MAX * i + j]);
         }
         printf("%d\n", num);
     }
