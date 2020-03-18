@@ -37,6 +37,12 @@ bool read_num(int *res) {
     return rtv;
 }
 
+void dbg_cat_prc_info() {
+    for (int i = 0, j = 0; i < prc_num; ++i) {
+        ;
+    }
+}
+
 int main() {
     printf("Spreadsheet #1\n");
 #if LOCAL
@@ -62,6 +68,7 @@ int main() {
         while (read_num(&num)) {
             prc[MAX * i + j] = num;;
             printf("%d ", prc[MAX * i + j]);
+            ++j;
         }
         printf("%d\n", num);
     }
