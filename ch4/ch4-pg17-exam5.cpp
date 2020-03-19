@@ -38,8 +38,18 @@ bool read_num(int *res) {
 }
 
 void dbg_cat_prc_info() {
-    for (int i = 0, j = 0; i < prc_num; ++i) {
-        ;
+    for (int i = 0; i < prc_num; ++i) {
+        int j_end = prc[MAX * i];
+        int k = 1;
+        if (*(prc_key + 3 * i) == 'E') {
+            j_end = 3;
+            k = 0;
+        }
+        while (k <= j_end) {
+            printf("%d ", prc[MAX * i + k]);
+            ++k;
+        }
+        putchar('\n');
     }
 }
 
@@ -62,15 +72,17 @@ int main() {
             continue;
         }
         sprintf(prc_key + 3 * i, "%s", key);
-        printf("%s ", prc_key + 3 * i);
+        // printf("%s ", prc_key + 3 * i);
         int num;
         int j = 0;
         while (read_num(&num)) {
-            prc[MAX * i + j] = num;;
-            printf("%d ", prc[MAX * i + j]);
+            prc[MAX * i + j] = num;
+            // printf("%d ", prc[MAX * i + j]);
             ++j;
         }
-        printf("%d\n", num);
+        prc[MAX * i + j] = num;
+        // printf("%d\n", num);
     }
+    dbg_cat_prc_info();
     return 0;
 }
