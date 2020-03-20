@@ -53,16 +53,7 @@ void dbg_cat_prc_info() {
     }
 }
 
-int main() {
-    printf("Spreadsheet #1\n");
-#if LOCAL
-    freopen("data/ch4-exam5.in", "r", stdin);
-#endif
-    scanf("%d %d", &row_num, &col_num);
-    scanf("%d", &prc_num);
-    printf("The input row number is: %d\n", row_num);
-    printf("The input col number is: %d\n", col_num);
-    printf("The input process number is: %d\n", prc_num);
+void cons_prc_info() {
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
     prc_key = (char*)malloc(prc_num * 3 * sizeof(char));
     char key[3];
@@ -83,6 +74,22 @@ int main() {
         prc[MAX * i + j] = num;
         // printf("%d\n", num);
     }
+}
+
+int main() {
+    printf("Spreadsheet #1\n");
+#if LOCAL
+    freopen("data/ch4-exam5.in", "r", stdin);
+#endif
+    scanf("%d %d", &row_num, &col_num);
+    scanf("%d", &prc_num);
+    printf("The input row number is: %d\n", row_num);
+    printf("The input col number is: %d\n", col_num);
+    printf("The input process number is: %d\n", prc_num);
+
+    cons_prc_info();
+
     dbg_cat_prc_info();
+
     return 0;
 }
