@@ -5,7 +5,9 @@
 
 #define MAX 50
 #define MAX_INT_W 10
+#define MOD 1000
 
+int ws[MAX][MAX];
 int row_num;
 int col_num;
 int prc_num;
@@ -53,6 +55,23 @@ void dbg_cat_prc_info() {
     }
 }
 
+void dbg_cat_ws_info() {
+    for (int i = 0; i < row_num; ++i) {
+        for (int j = 0; j < col_num; ++j) {
+            printf("%d ", ws[i][j]);
+        }
+        putchar('\n');
+    }
+}
+
+void init_ws() {
+    for (int i = 0; i < row_num; ++i) {
+        for (int j = 0; j < col_num; ++j) {
+            ws[i][j] = (i + 1) * MOD + (j + 1);
+        }
+    }
+}
+
 void cons_prc_info() {
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
     prc_key = (char*)malloc(prc_num * 3 * sizeof(char));
@@ -76,6 +95,40 @@ void cons_prc_info() {
     }
 }
 
+bool apply_prc(int *a_row, int *a_col) {
+    bool rtv = true;
+    return rtv;
+}
+
+void ans_query() {
+    int q_num;
+    scanf("%d", &q_num);
+    while (q_num-- > 0) {
+        int q_row;
+        int q_col;
+        scanf("%d %d", &q_row, &q_col);
+        
+        int a_row;
+        int a_col;
+        bool is_there = apply_prc(&a_row, &a_col);
+
+        if (is_there) {
+            printf("Cell data in (%d,%d) moved to (%d,%d)\n"
+                    ,q_row
+                    ,q_col
+                    ,a_row
+                    ,a_col
+            );
+        } else {
+            printf("Cell data in (%d,%d) GONE\n"
+                    ,q_row
+                    ,q_col
+            );
+        }
+
+    }
+}
+
 int main() {
     printf("Spreadsheet #1\n");
 #if LOCAL
@@ -87,8 +140,12 @@ int main() {
     printf("The input col number is: %d\n", col_num);
     printf("The input process number is: %d\n", prc_num);
 
-    cons_prc_info();
+    init_ws();
+    dbg_cat_ws_info();
 
+    ans_query();
+
+    cons_prc_info();
     dbg_cat_prc_info();
 
     return 0;
