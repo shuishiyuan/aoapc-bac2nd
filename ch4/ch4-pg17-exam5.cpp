@@ -97,6 +97,20 @@ void cons_prc_info() {
 
 bool apply_prc(int *a_row, int *a_col) {
     bool rtv = true;
+    for (int i = 0; i < prc_num; ++i) {
+        if (prc_key[3 * i] == 'E') {
+            if (prc[MAX * i + 0] == a_row && prc[MAX * i + 1] == a_col) {
+                a_row = prc[MAX * i + 2];
+                a_col = prc[MAX * i + 3];
+            }
+        } else {
+            while (prc[MAX * i + 0]-- > 0) {
+                if (prc_key[3 * i] == 'I') {
+                    ;
+                }
+            }
+        }
+    }
     return rtv;
 }
 
@@ -108,8 +122,8 @@ void ans_query() {
         int q_col;
         scanf("%d %d", &q_row, &q_col);
         
-        int a_row;
-        int a_col;
+        int a_row = q_row;
+        int a_col = q_col;
         bool is_there = apply_prc(&a_row, &a_col);
 
         if (is_there) {
@@ -143,10 +157,10 @@ int main() {
     init_ws();
     dbg_cat_ws_info();
 
-    ans_query();
-
     cons_prc_info();
     dbg_cat_prc_info();
+
+    ans_query();
 
     return 0;
 }
