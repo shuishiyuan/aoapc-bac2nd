@@ -44,9 +44,12 @@ void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
         int j_end = prc[MAX * i];
         int k = 1;
-        if (*(prc_key + MAX_KEY_W * i) == 'E') {
-            j_end = MAX_KEY_W;
+        printf("%s ", prc_key + MAX_KEY_W * i);
+        if (prc_key[MAX_KEY_W * i] == 'E') {
+            j_end = 3;
             k = 0;
+        } else {
+            printf("%d ", j_end);
         }
         while (k <= j_end) {
             printf("%d ", prc[MAX * i + k]);
@@ -102,36 +105,36 @@ bool apply_prc(int *a_row, int *a_col) {
     bool rtv = true;
     for (int i = 0; i < prc_num; ++i) {
         if (prc_key[MAX_KEY_W * i] == 'E') {
-            if (prc[MAX * i + 0] == a_row && prc[MAX * i + 1] == a_col) {
-                a_row = prc[MAX * i + 2];
-                a_col = prc[MAX * i + 3];
+            if (prc[MAX * i + 0] == *a_row && prc[MAX * i + 1] == *a_col) {
+                *a_row = prc[MAX * i + 2];
+                *a_col = prc[MAX * i + 3];
             }
         } else {
             for (int j = 1; j <=  prc[MAX * i]; ++j) {
                 if (prc_key[MAX_KEY_W * i] == 'I') {
-                    if (prc_key[MAX_NUM_W * i + 1] == 'R') {
+                    if (prc_key[MAX_KEY_W * i + 1] == 'R') {
                         if (prc[MAX * i + j] <= *a_row) {
-                            *a_row++;
+                            (*a_row)++;
                         }
                     } else {
                         if (prc[MAX * i + j] <= *a_col) {
-                            *a_col++;
+                            (*a_col)++;
                         }
                     }
                 } else {
-                    if (prc_key[MAX_NUM_W * i + 1] == 'R') {
-                        if (prc[MAX * i + j] = *a_row) {
+                    if (prc_key[MAX_KEY_W * i + 1] == 'R') {
+                        if (prc[MAX * i + j] == *a_row) {
                             return false;
                         }
                         if (prc[MAX * i + j] < *a_row) {
-                            *a_row--;
+                            (*a_row)--;
                         }
                     } else {
-                        if (prc[MAX * i + j] = *a_col) {
+                        if (prc[MAX * i + j] == *a_col) {
                             return false;
                         }
                         if (prc[MAX * i + j] < *a_col) {
-                            *a_col--;
+                            (*a_col)--;
                         }
                     }
                 }
@@ -182,7 +185,7 @@ int main() {
     printf("The input process number is: %d\n", prc_num);
 
     init_ws();
-    dbg_cat_ws_info();
+    // dbg_cat_ws_info();
 
     cons_prc_info();
     dbg_cat_prc_info();
