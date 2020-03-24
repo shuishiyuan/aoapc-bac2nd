@@ -104,8 +104,10 @@ void cons_prc_info() {
 bool apply_prc(int *a_row, int *a_col) {
     bool rtv = true;
     for (int i = 0; i < prc_num; ++i) {
+        int q_row = *a_row;
+        int q_col = *a_col;
         if (prc_key[MAX_KEY_W * i] == 'E') {
-            if (prc[MAX * i + 0] == *a_row && prc[MAX * i + 1] == *a_col) {
+            if (prc[MAX * i + 0] == q_row && prc[MAX * i + 1] == q_col) {
                 *a_row = prc[MAX * i + 2];
                 *a_col = prc[MAX * i + 3];
             }
@@ -113,27 +115,27 @@ bool apply_prc(int *a_row, int *a_col) {
             for (int j = 1; j <=  prc[MAX * i]; ++j) {
                 if (prc_key[MAX_KEY_W * i] == 'I') {
                     if (prc_key[MAX_KEY_W * i + 1] == 'R') {
-                        if (prc[MAX * i + j] <= *a_row) {
+                        if (prc[MAX * i + j] <= q_row) {
                             (*a_row)++;
                         }
                     } else {
-                        if (prc[MAX * i + j] <= *a_col) {
+                        if (prc[MAX * i + j] <= q_col) {
                             (*a_col)++;
                         }
                     }
                 } else {
                     if (prc_key[MAX_KEY_W * i + 1] == 'R') {
-                        if (prc[MAX * i + j] == *a_row) {
+                        if (prc[MAX * i + j] == q_row) {
                             return false;
                         }
-                        if (prc[MAX * i + j] < *a_row) {
+                        if (prc[MAX * i + j] < q_row) {
                             (*a_row)--;
                         }
                     } else {
-                        if (prc[MAX * i + j] == *a_col) {
+                        if (prc[MAX * i + j] == q_col) {
                             return false;
                         }
-                        if (prc[MAX * i + j] < *a_col) {
+                        if (prc[MAX * i + j] < q_col) {
                             (*a_col)--;
                         }
                     }
@@ -174,21 +176,22 @@ void ans_query() {
 }
 
 int main() {
-    printf("Spreadsheet #1\n");
 #if LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
+    freopen("data/ch4-exam5.out", "w", stdout);
 #endif
+    printf("Spreadsheet #1\n");
     scanf("%d %d", &row_num, &col_num);
     scanf("%d", &prc_num);
-    printf("The input row number is: %d\n", row_num);
-    printf("The input col number is: %d\n", col_num);
-    printf("The input process number is: %d\n", prc_num);
+    // printf("The input row number is: %d\n", row_num);
+    // printf("The input col number is: %d\n", col_num);
+    // printf("The input process number is: %d\n", prc_num);
 
     init_ws();
     // dbg_cat_ws_info();
 
     cons_prc_info();
-    dbg_cat_prc_info();
+    // dbg_cat_prc_info();
 
     ans_query();
 
