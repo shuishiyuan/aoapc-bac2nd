@@ -14,6 +14,7 @@ int col_num;
 int prc_num;
 int *prc;
 char *prc_key;
+bool is_extra[MAX];
 
 /* --function declaration start-- */
 void init_ws();
@@ -41,10 +42,10 @@ int main() {
     // printf("The input process number is: %d\n", prc_num);
 
     init_ws();
-    dbg_cat_ws_info();
+    // dbg_cat_ws_info();
 
     cons_prc_info();
-    dbg_cat_prc_info();
+    // dbg_cat_prc_info();
 
     ans_query();
 
@@ -73,13 +74,19 @@ void cons_prc_info() {
         sprintf(prc_key + MAX_KEY_W * i, "%s", key);
         // printf("%s ", prc_key + MAX_KEY_W * i);
         int num;
-        int j = 0;
-        while (read_num(&num)) {
+        read_num(&num);
+        prc[MAX * i] = num;
+        int j = 1;
+        memset(is_extra, false, MAX * sizeof(bool));
+        while (read_num(&num) && !is_extra[num]) {
             prc[MAX * i + j] = num;
+            is_extra[num] = true;
             // printf("%d ", prc[MAX * i + j]);
             ++j;
         }
-        prc[MAX * i + j] = num;
+        if (!is_extra[num]) {
+            prc[MAX * i + j] = num;
+        }
         // printf("%d\n", num);
     }
 }
