@@ -74,17 +74,29 @@ void cons_prc_info() {
         sprintf(prc_key + MAX_KEY_W * i, "%s", key);
         // printf("%s ", prc_key + MAX_KEY_W * i);
         int num;
-        read_num(&num);
-        prc[MAX * i] = num;
-        int j = 1;
-        memset(is_extra, false, MAX * sizeof(bool));
-        while (read_num(&num) && !is_extra[num]) {
-            prc[MAX * i + j] = num;
-            is_extra[num] = true;
-            // printf("%d ", prc[MAX * i + j]);
-            ++j;
+        int j = 0;
+
+        // first save the process number of non exchange
+        if (key[0] != 'E') {
+            read_num(&num);
+            prc[MAX * i] = num;
+            j = 1;
+            memset(is_extra, false, MAX * sizeof(bool));
         }
-        if (!is_extra[num]) {
+        while (read_num(&num)) {
+            if (key[0] != 'E' && !is_extra[num]) {
+                prc[MAX * i + j] = num;
+                is_extra[num] = true;
+                ++j;
+                // printf("%d ", prc[MAX * i + j]);
+            } else if (key[0] == 'E') {
+                prc[MAX * i + j] = num;
+                ++j;
+            }
+        }
+        if (key[0] != 'E' && !is_extra[num]) {
+            prc[MAX * i + j] = num;
+        } else if (key[0] == 'E') {
             prc[MAX * i + j] = num;
         }
         // printf("%d\n", num);
