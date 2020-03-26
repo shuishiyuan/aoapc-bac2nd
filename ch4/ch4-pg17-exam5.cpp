@@ -8,7 +8,6 @@
 #define MAX_KEY_W 3
 #define MOD 1000
 
-int ws[MAX][MAX];
 int row_num;
 int col_num;
 int prc_num;
@@ -17,7 +16,6 @@ char *prc_key;
 bool is_extra[MAX];
 
 /* --function declaration start-- */
-void init_ws();
 void cons_prc_info();
 void ans_query();
 
@@ -41,23 +39,12 @@ int main() {
     // printf("The input col number is: %d\n", col_num);
     // printf("The input process number is: %d\n", prc_num);
 
-    init_ws();
-    // dbg_cat_ws_info();
-
     cons_prc_info();
     // dbg_cat_prc_info();
 
     ans_query();
 
     return 0;
-}
-
-void init_ws() {
-    for (int i = 0; i < row_num; ++i) {
-        for (int j = 0; j < col_num; ++j) {
-            ws[i][j] = (i + 1) * MOD + (j + 1);
-        }
-    }
 }
 
 void cons_prc_info() {
@@ -216,15 +203,6 @@ void dbg_cat_prc_info() {
         while (k <= j_end) {
             printf("%d ", prc[MAX * i + k]);
             ++k;
-        }
-        putchar('\n');
-    }
-}
-
-void dbg_cat_ws_info() {
-    for (int i = 0; i < row_num; ++i) {
-        for (int j = 0; j < col_num; ++j) {
-            printf("%d ", ws[i][j]);
         }
         putchar('\n');
     }
