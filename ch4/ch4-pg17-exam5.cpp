@@ -48,22 +48,21 @@ int main() {
 }
 
 void cons_prc_info() {
-    // TODO
     // Duplicate number of inserting and deleting.
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
     prc_key = (char*)malloc(prc_num * MAX_KEY_W * sizeof(char));
     char key[MAX_KEY_W];
     for (int i = 0; i < prc_num; ++i) {
+        // exclude the begining 0x0a(new line character)
         if (!read_char(key)) {
             --i;
             continue;
         }
         sprintf(prc_key + MAX_KEY_W * i, "%s", key);
-        // printf("%s ", prc_key + MAX_KEY_W * i);
         int num;
         int j = 0;
 
-        // first save the process number of non exchange
+        // at first, save the process number of non exchange
         if (key[0] != 'E') {
             read_num(&num);
             prc[MAX * i] = num;
