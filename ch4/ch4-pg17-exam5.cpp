@@ -35,9 +35,6 @@ int main() {
     printf("Spreadsheet #1\n");
     scanf("%d %d", &row_num, &col_num);
     scanf("%d", &prc_num);
-    // printf("The input row number is: %d\n", row_num);
-    // printf("The input col number is: %d\n", col_num);
-    // printf("The input process number is: %d\n", prc_num);
 
     cons_prc_info();
     // dbg_cat_prc_info();
@@ -48,7 +45,6 @@ int main() {
 }
 
 void cons_prc_info() {
-    // Duplicate number of inserting and deleting.
     prc = (int*)malloc(prc_num * MAX * sizeof(int));
     prc_key = (char*)malloc(prc_num * MAX_KEY_W * sizeof(char));
     char key[MAX_KEY_W];
@@ -62,6 +58,7 @@ void cons_prc_info() {
         int num;
         int j = 0;
 
+        // Duplicate number of inserting and deleting.
         // at first, save the process number of non exchange
         if (key[0] != 'E') {
             read_num(&num);
@@ -74,7 +71,6 @@ void cons_prc_info() {
                 prc[MAX * i + j] = num;
                 is_extra[num] = true;
                 ++j;
-                // printf("%d ", prc[MAX * i + j]);
             } else if (key[0] == 'E') {
                 prc[MAX * i + j] = num;
                 ++j;
@@ -155,7 +151,7 @@ bool apply_prc(int *a_row, int *a_col) {
             }
         } else {
             for (int j = 1; j <=  prc[MAX * i]; ++j) {
-                if (prc_key[MAX_KEY_W * i] == 'I') {
+                if (prc_key[MAX_KEY_W * i + 0] == 'I') {
                     if (prc_key[MAX_KEY_W * i + 1] == 'R') {
                         if (prc[MAX * i + j] <= q_row) {
                             (*a_row)++;
