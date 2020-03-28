@@ -54,7 +54,7 @@ void cons_prc_info() {
             --i;
             continue;
         }
-        sprintf(prc_key[i], "%s", key);
+        sprintf(*(prc_key + i), "%s", key);
         int num;
         int j = 0;
 
@@ -188,7 +188,7 @@ void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
         int j_end = prc[i][0];
         int k = 1;
-        printf("%s ", prc_key[i]);
+        printf("%s ", (char *)(prc_key + i));
         if (prc_key[i][0] == 'E') {
             j_end = 3;
             k = 0;
@@ -196,7 +196,7 @@ void dbg_cat_prc_info() {
             printf("%d ", j_end);
         }
         while (k <= j_end) {
-            printf("%d ", prc[i][k]);
+            printf("%d ", *(*(prc + i) + k));
             ++k;
         }
         putchar('\n');
