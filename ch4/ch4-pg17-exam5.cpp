@@ -54,7 +54,7 @@ void cons_prc_info() {
             --i;
             continue;
         }
-        sprintf(prc_key + MAX_KEY_W * i, "%s", key);
+        sprintf(prc_key[i], "%s", key);
         int num;
         int j = 0;
 
@@ -144,15 +144,15 @@ bool apply_prc(int *a_row, int *a_col) {
     for (int i = 0; i < prc_num; ++i) {
         int q_row = *a_row;
         int q_col = *a_col;
-        if (prc_key[MAX_KEY_W * i] == 'E') {
-            if (prc[MAX * i + 0] == q_row && prc[MAX * i + 1] == q_col) {
-                *a_row = prc[MAX * i + 2];
-                *a_col = prc[MAX * i + 3];
+        if (prc_key[i][0] == 'E') {
+            if (prc[i][0] == q_row && prc[i][1] == q_col) {
+                *a_row = prc[i][2];
+                *a_col = prc[i][3];
             }
         } else {
-            for (int j = 1; j <=  prc[MAX * i]; ++j) {
-                if (prc_key[MAX_KEY_W * i + 0] == 'I') {
-                    if (prc_key[MAX_KEY_W * i + 1] == 'R') {
+            for (int j = 1; j <=  prc[i][0]; ++j) {
+                if (prc_key[i][0] == 'I') {
+                    if (prc_key[i][1] == 'R') {
                         if (prc[i][j] <= q_row) {
                             (*a_row)++;
                         }
@@ -162,7 +162,7 @@ bool apply_prc(int *a_row, int *a_col) {
                         }
                     }
                 } else {
-                    if (prc_key[MAX_KEY_W * i + 1] == 'R') {
+                    if (prc_key[i][1] == 'R') {
                         if (prc[i][j] == q_row) {
                             return false;
                         }
@@ -186,17 +186,17 @@ bool apply_prc(int *a_row, int *a_col) {
 
 void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
-        int j_end = prc[MAX * i];
+        int j_end = prc[i][0];
         int k = 1;
-        printf("%s ", prc_key + MAX_KEY_W * i);
-        if (prc_key[MAX_KEY_W * i] == 'E') {
+        printf("%s ", prc_key[i]);
+        if (prc_key[i][0] == 'E') {
             j_end = 3;
             k = 0;
         } else {
             printf("%d ", j_end);
         }
         while (k <= j_end) {
-            printf("%d ", prc[MAX * i + k]);
+            printf("%d ", prc[i][k]);
             ++k;
         }
         putchar('\n');
