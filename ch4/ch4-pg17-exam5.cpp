@@ -12,7 +12,8 @@ int row_num;
 int col_num;
 int prc_num;
 int (*prc)[MAX];
-char (*prc_key)[MAX_KEY_W];
+char **prc_key;
+// char (*prc_key)[MAX_KEY_W];
 bool is_extra[MAX];
 
 /* --function declaration start-- */
@@ -30,23 +31,23 @@ void dbg_cat_prc_info();
 int main() {
 #if LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
-    freopen("data/ch4-exam5.out", "w", stdout);
+    // freopen("data/ch4-exam5.out", "w", stdout);
 #endif
     printf("Spreadsheet #1\n");
     scanf("%d %d", &row_num, &col_num);
     scanf("%d", &prc_num);
 
     cons_prc_info();
-    // dbg_cat_prc_info();
+    dbg_cat_prc_info();
 
-    ans_query();
+    // ans_query();
 
     return 0;
 }
 
 void cons_prc_info() {
     prc = (int (*)[MAX])malloc(prc_num * MAX * sizeof(int));
-    prc_key = (char (*)[MAX_KEY_W])malloc(prc_num * MAX_KEY_W * sizeof(char));
+    prc_key = (char **)malloc(prc_num * sizeof(char *));
     char key[MAX_KEY_W];
     for (int i = 0; i < prc_num; ++i) {
         // exclude the begining 0x0a(new line character)
@@ -54,6 +55,7 @@ void cons_prc_info() {
             --i;
             continue;
         }
+        *(prc_key + i) = (char *)malloc(MAX_KEY_W * sizeof(char));
         sprintf(*(prc_key + i), "%s", key);
         int num;
         int j = 0;
@@ -188,8 +190,8 @@ void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
         int j_end = prc[i][0];
         int k = 1;
-        printf("%s ", (char *)(prc_key + i));
-        if (prc_key[i][0] == 'E') {
+        printf("%s ", *(prc_key + i));
+        if (*(*(prc_key + i)) == 'E') {
             j_end = 3;
             k = 0;
         } else {
