@@ -11,7 +11,7 @@
 int row_num;
 int col_num;
 int prc_num;
-int (*prc)[MAX];
+int **prc;
 char **prc_key;
 // char (*prc_key)[MAX_KEY_W];
 bool is_extra[MAX];
@@ -31,22 +31,22 @@ void dbg_cat_prc_info();
 int main() {
 #if LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
-    // freopen("data/ch4-exam5.out", "w", stdout);
+    freopen("data/ch4-exam5.out", "w", stdout);
 #endif
     printf("Spreadsheet #1\n");
     scanf("%d %d", &row_num, &col_num);
     scanf("%d", &prc_num);
 
     cons_prc_info();
-    dbg_cat_prc_info();
+    // dbg_cat_prc_info();
 
-    // ans_query();
+    ans_query();
 
     return 0;
 }
 
 void cons_prc_info() {
-    prc = (int (*)[MAX])malloc(prc_num * MAX * sizeof(int));
+    prc = (int **)malloc(prc_num * sizeof(int *));
     prc_key = (char **)malloc(prc_num * sizeof(char *));
     char key[MAX_KEY_W];
     for (int i = 0; i < prc_num; ++i) {
@@ -59,29 +59,34 @@ void cons_prc_info() {
         sprintf(*(prc_key + i), "%s", key);
         int num;
         int j = 0;
+        int col_w = 4;
 
         // Duplicate number of inserting and deleting.
         // at first, save the process number of non exchange
         if (key[0] != 'E') {
             read_num(&num);
-            prc[i][0] = num;
-            j = 1;
+            col_w = num + 1;
+            prc[i] = (int *)malloc(col_w * sizeof(int));
+            *(*(prc + i) + j) = num;
+            j++;
             memset(is_extra, false, MAX * sizeof(bool));
+        } else {
+            prc[i] = (int *)malloc(col_w * sizeof(int));
         }
         while (read_num(&num)) {
             if (key[0] != 'E' && !is_extra[num]) {
-                prc[i][j] = num;
+                *(*(prc + i) + j) = num;
                 is_extra[num] = true;
                 ++j;
             } else if (key[0] == 'E') {
-                prc[i][j] = num;
+                *(*(prc + i) + j) = num;
                 ++j;
             }
         }
         if (key[0] != 'E' && !is_extra[num]) {
-            prc[i][j] = num;
+            *(*(prc + i) + j) = num;
         } else if (key[0] == 'E') {
-            prc[i][j] = num;
+            *(*(prc + i) + j) = num;
         }
         // printf("%d\n", num);
     }
@@ -146,36 +151,36 @@ bool apply_prc(int *a_row, int *a_col) {
     for (int i = 0; i < prc_num; ++i) {
         int q_row = *a_row;
         int q_col = *a_col;
-        if (prc_key[i][0] == 'E') {
-            if (prc[i][0] == q_row && prc[i][1] == q_col) {
-                *a_row = prc[i][2];
-                *a_col = prc[i][3];
+        if (*(prc_key + i)[0] == 'E') {
+            if (*(prc + i)[0] == q_row && *(prc + i)[1] == q_col) {
+                *a_row = *(prc + i)[2];
+                *a_col = *(prc + i)[3];
             }
         } else {
-            for (int j = 1; j <=  prc[i][0]; ++j) {
-                if (prc_key[i][0] == 'I') {
-                    if (prc_key[i][1] == 'R') {
-                        if (prc[i][j] <= q_row) {
+            for (int j = 1; j <=  *(prc + i)[0]; ++j) {
+                if (*(prc_key + i)[0] == 'I') {
+                    if (*(prc_key + i)[1] == 'R') {
+                        if (*(*(prc + i) + j) <= q_row) {
                             (*a_row)++;
                         }
                     } else {
-                        if (prc[i][j] <= q_col) {
+                        if (*(*(prc + i) + j) <= q_col) {
                             (*a_col)++;
                         }
                     }
                 } else {
-                    if (prc_key[i][1] == 'R') {
-                        if (prc[i][j] == q_row) {
+                    if (*(prc_key + i)[1] == 'R') {
+                        if (*(*(prc + i) + j) == q_row) {
                             return false;
                         }
-                        if (prc[i][j] < q_row) {
+                        if (*(*(prc + i) + j) < q_row) {
                             (*a_row)--;
                         }
                     } else {
-                        if (prc[i][j] == q_col) {
+                        if (*(*(prc + i) + j) == q_col) {
                             return false;
                         }
-                        if (prc[i][j] < q_col) {
+                        if (*(*(prc + i) + j) < q_col) {
                             (*a_col)--;
                         }
                     }
@@ -188,7 +193,7 @@ bool apply_prc(int *a_row, int *a_col) {
 
 void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
-        int j_end = prc[i][0];
+        int j_end = *(prc + i)[0];
         int k = 1;
         printf("%s ", *(prc_key + i));
         if (*(*(prc_key + i)) == 'E') {
