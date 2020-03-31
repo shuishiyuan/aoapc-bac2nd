@@ -31,16 +31,16 @@ void dbg_cat_prc_info();
 int main() {
 #if LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
-    freopen("data/ch4-exam5.out", "w", stdout);
+    // freopen("data/ch4-exam5.out", "w", stdout);
 #endif
     printf("Spreadsheet #1\n");
     scanf("%d %d", &row_num, &col_num);
     scanf("%d", &prc_num);
 
     cons_prc_info();
-    // dbg_cat_prc_info();
+    dbg_cat_prc_info();
 
-    ans_query();
+    // ans_query();
 
     return 0;
 }
@@ -55,8 +55,8 @@ void cons_prc_info() {
             --i;
             continue;
         }
-        *(prc_key + i) = (char *)malloc(MAX_KEY_W * sizeof(char));
-        sprintf(*(prc_key + i), "%s", key);
+        prc_key[i] = (char *)malloc(MAX_KEY_W * sizeof(char));
+        sprintf(prc_key[i], "%s", key);
         int num;
         int j = 0;
         int col_w = 4;
@@ -151,15 +151,15 @@ bool apply_prc(int *a_row, int *a_col) {
     for (int i = 0; i < prc_num; ++i) {
         int q_row = *a_row;
         int q_col = *a_col;
-        if (*(prc_key + i)[0] == 'E') {
+        if (prc_key[i][0] == 'E') {
             if (*(prc + i)[0] == q_row && *(prc + i)[1] == q_col) {
                 *a_row = *(prc + i)[2];
                 *a_col = *(prc + i)[3];
             }
         } else {
             for (int j = 1; j <=  *(prc + i)[0]; ++j) {
-                if (*(prc_key + i)[0] == 'I') {
-                    if (*(prc_key + i)[1] == 'R') {
+                if (prc_key[i][0] == 'I') {
+                    if (prc_key[i][1] == 'R') {
                         if (*(*(prc + i) + j) <= q_row) {
                             (*a_row)++;
                         }
@@ -169,7 +169,7 @@ bool apply_prc(int *a_row, int *a_col) {
                         }
                     }
                 } else {
-                    if (*(prc_key + i)[1] == 'R') {
+                    if (prc_key[i][1] == 'R') {
                         if (*(*(prc + i) + j) == q_row) {
                             return false;
                         }
@@ -193,17 +193,17 @@ bool apply_prc(int *a_row, int *a_col) {
 
 void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
-        int j_end = *(prc + i)[0];
+        int j_end = prc[i][0];
         int k = 1;
-        printf("%s ", *(prc_key + i));
-        if (*(*(prc_key + i)) == 'E') {
+        printf("%s ", prc_key[i]);
+        if (prc_key[i][0] == 'E') {
             j_end = 3;
             k = 0;
         } else {
             printf("%d ", j_end);
         }
         while (k <= j_end) {
-            printf("%d ", *(*(prc + i) + k));
+            printf("%d ", prc[i][k]);
             ++k;
         }
         putchar('\n');
