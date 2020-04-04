@@ -31,16 +31,16 @@ void dbg_cat_prc_info();
 int main() {
 #if LOCAL
     freopen("data/ch4-exam5.in", "r", stdin);
-    // freopen("data/ch4-exam5.out", "w", stdout);
+    freopen("data/ch4-exam5.out", "w", stdout);
 #endif
     printf("Spreadsheet #1\n");
     scanf("%d %d", &row_num, &col_num);
     scanf("%d", &prc_num);
 
     cons_prc_info();
-    dbg_cat_prc_info();
+    // dbg_cat_prc_info();
 
-    // ans_query();
+    ans_query();
 
     return 0;
 }
@@ -67,7 +67,7 @@ void cons_prc_info() {
             read_num(&num);
             col_w = num + 1;
             prc[i] = (int *)malloc(col_w * sizeof(int));
-            *(*(prc + i) + j) = num;
+            prc[i][j] = num;
             j++;
             memset(is_extra, false, MAX * sizeof(bool));
         } else {
@@ -75,18 +75,18 @@ void cons_prc_info() {
         }
         while (read_num(&num)) {
             if (key[0] != 'E' && !is_extra[num]) {
-                *(*(prc + i) + j) = num;
+                prc[i][j] = num;
                 is_extra[num] = true;
                 ++j;
             } else if (key[0] == 'E') {
-                *(*(prc + i) + j) = num;
+                prc[i][j] = num;
                 ++j;
             }
         }
         if (key[0] != 'E' && !is_extra[num]) {
-            *(*(prc + i) + j) = num;
+            prc[i][j] = num;
         } else if (key[0] == 'E') {
-            *(*(prc + i) + j) = num;
+            prc[i][j] = num;
         }
         // printf("%d\n", num);
     }
@@ -152,35 +152,35 @@ bool apply_prc(int *a_row, int *a_col) {
         int q_row = *a_row;
         int q_col = *a_col;
         if (prc_key[i][0] == 'E') {
-            if (*(prc + i)[0] == q_row && *(prc + i)[1] == q_col) {
-                *a_row = *(prc + i)[2];
-                *a_col = *(prc + i)[3];
+            if (prc[i][0] == q_row && prc[i][1] == q_col) {
+                *a_row = prc[i][2];
+                *a_col = prc[i][3];
             }
         } else {
-            for (int j = 1; j <=  *(prc + i)[0]; ++j) {
+            for (int j = 1; j <=  prc[i][0]; ++j) {
                 if (prc_key[i][0] == 'I') {
                     if (prc_key[i][1] == 'R') {
-                        if (*(*(prc + i) + j) <= q_row) {
+                        if (prc[i][j] <= q_row) {
                             (*a_row)++;
                         }
                     } else {
-                        if (*(*(prc + i) + j) <= q_col) {
+                        if (prc[i][j] <= q_col) {
                             (*a_col)++;
                         }
                     }
                 } else {
                     if (prc_key[i][1] == 'R') {
-                        if (*(*(prc + i) + j) == q_row) {
+                        if (prc[i][j] == q_row) {
                             return false;
                         }
-                        if (*(*(prc + i) + j) < q_row) {
+                        if (prc[i][j] < q_row) {
                             (*a_row)--;
                         }
                     } else {
-                        if (*(*(prc + i) + j) == q_col) {
+                        if (prc[i][j] == q_col) {
                             return false;
                         }
-                        if (*(*(prc + i) + j) < q_col) {
+                        if (prc[i][j] < q_col) {
                             (*a_col)--;
                         }
                     }
