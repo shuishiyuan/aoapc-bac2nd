@@ -58,13 +58,15 @@ void cons_prc_info() {
         prc_key[i] = (char *)malloc(MAX_KEY_W * sizeof(char));
         sprintf(prc_key[i], "%s", key);
         int num;
+        int *num_p = (int *)malloc(sizeof(int));
         int j = 0;
         int col_w = 4;
 
         // Duplicate number of inserting and deleting.
         // at first, save the process number of non exchange
         if (key[0] != 'E') {
-            read_num(&num);
+            read_num(num_p);
+            num = *num_p;
             col_w = num + 1;
             prc[i] = (int *)malloc(col_w * sizeof(int));
             prc[i][j] = num;
@@ -73,7 +75,8 @@ void cons_prc_info() {
         } else {
             prc[i] = (int *)malloc(col_w * sizeof(int));
         }
-        while (read_num(&num)) {
+        while (read_num(num_p)) {
+            num = *num_p;
             if (key[0] != 'E' && !is_extra[num]) {
                 prc[i][j] = num;
                 is_extra[num] = true;
