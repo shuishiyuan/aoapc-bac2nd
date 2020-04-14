@@ -86,6 +86,7 @@ void cons_prc_info() {
                 ++j;
             }
         }
+        num = *num_p;
         if (key[0] != 'E' && !is_extra[num]) {
             prc[i][j] = num;
         } else if (key[0] == 'E') {
