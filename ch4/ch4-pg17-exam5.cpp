@@ -38,7 +38,6 @@ int main() {
     scanf("%d", &prc_num);
 
     cons_prc_info();
-    // dbg_cat_prc_info();
 
     ans_query();
 
@@ -92,7 +91,6 @@ void cons_prc_info() {
         } else if (key[0] == 'E') {
             prc[i][j] = num;
         }
-        // printf("%d\n", num);
     }
 }
 
