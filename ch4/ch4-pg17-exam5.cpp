@@ -157,6 +157,9 @@ bool apply_prc(int *a_row, int *a_col) {
             if (prc[i][0] == q_row && prc[i][1] == q_col) {
                 *a_row = prc[i][2];
                 *a_col = prc[i][3];
+            } else if (prc[i][2] == q_row && prc[i][3] == q_col) {
+                *a_row = prc[i][0];
+                *a_col = prc[i][1];
             }
         } else {
             for (int j = 1; j <=  prc[i][0]; ++j) {
