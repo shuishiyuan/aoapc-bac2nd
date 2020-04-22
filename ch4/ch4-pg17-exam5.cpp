@@ -162,35 +162,21 @@ bool apply_prc(int *a_row, int *a_col) {
                 *a_col = prc[i][1];
             }
         } else {
+            int adj_r = 0;
+            int adj_c = 0;
             for (int j = 1; j <=  prc[i][0]; ++j) {
                 if (prc_key[i][0] == 'I') {
-                    if (prc_key[i][1] == 'R') {
-                        if (prc[i][j] <= q_row) {
-                            (*a_row)++;
-                        }
-                    } else {
-                        if (prc[i][j] <= q_col) {
-                            (*a_col)++;
-                        }
-                    }
+                    if (prc_key[i][1] == 'R' && prc[i][j] <= q_row) adj_r++;
+                    if (prc_key[i][1] == 'C' && prc[i][j] <= q_col) adj_c++;
                 } else {
-                    if (prc_key[i][1] == 'R') {
-                        if (prc[i][j] == q_row) {
-                            return false;
-                        }
-                        if (prc[i][j] < q_row) {
-                            (*a_row)--;
-                        }
-                    } else {
-                        if (prc[i][j] == q_col) {
-                            return false;
-                        }
-                        if (prc[i][j] < q_col) {
-                            (*a_col)--;
-                        }
-                    }
+                    if (prc_key[i][1] == 'R' && prc[i][j] == q_row) return false;
+                    if (prc_key[i][1] == 'C' && prc[i][j] == q_col) return false;
+                    if (prc_key[i][1] == 'R' && prc[i][j] < q_row) adj_r--;
+                    if (prc_key[i][1] == 'C' && prc[i][j] < q_col) adj_c--;
                 }
             }
+            *a_row += adj_r;
+            *a_col += adj_c;
         }
     }
     return rtv;
