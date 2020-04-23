@@ -16,6 +16,12 @@ char **prc_key;
 // char (*prc_key)[MAX_KEY_W];
 bool is_extra[MAX];
 
+typedef struct _CMD {
+    char key[MAX_KEY_W];
+    int cnt_len;
+    int *cnt_arr;
+} CMD, *CMD_ARR;
+
 /* --function declaration start-- */
 void cons_prc_info();
 void ans_query();
