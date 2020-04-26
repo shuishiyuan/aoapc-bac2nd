@@ -11,7 +11,6 @@
 int row_num;
 int col_num;
 int prc_num;
-int **prc;
 char **prc_key;
 // char (*prc_key)[MAX_KEY_W];
 bool is_extra[MAX];
@@ -22,6 +21,7 @@ typedef struct _CMD {
     int *cnt_arr;
 } CMD, *CMD_ARR;
 
+CMD *prc;
 /* --function declaration start-- */
 void cons_prc_info();
 void ans_query();
@@ -45,13 +45,13 @@ int main() {
 
     cons_prc_info();
 
-    ans_query();
+    // ans_query();
 
     return 0;
 }
 
 void cons_prc_info() {
-    prc = (int **)malloc(prc_num * sizeof(int *));
+    prc = (CMD *)malloc(prc_num * sizeof(CMD *));
     prc_key = (char **)malloc(prc_num * sizeof(char *));
     char key[MAX_KEY_W];
     for (int i = 0; i < prc_num; ++i) {
@@ -61,45 +61,47 @@ void cons_prc_info() {
             continue;
         }
         prc_key[i] = (char *)malloc(MAX_KEY_W * sizeof(char));
-        sprintf(prc_key[i], "%s", key);
+        // prc[i].key = (char *)malloc(MAX_KEY_W * sizeof(char));
+        sprintf(prc[i].key, "%s", key);
         int num;
         int *num_p = (int *)malloc(sizeof(int));
-        int j = 0;
-        int col_w = 4;
+        int col_w;
 
         // Duplicate number of inserting and deleting.
         // at first, save the process number of non exchange
         if (key[0] != 'E') {
             read_num(num_p);
             num = *num_p;
-            col_w = num + 1;
-            prc[i] = (int *)malloc(col_w * sizeof(int));
-            prc[i][j] = num;
-            j++;
-            memset(is_extra, false, MAX * sizeof(bool));
+            col_w = num;
         } else {
-            prc[i] = (int *)malloc(col_w * sizeof(int));
+            col_w = 4;
         }
+        prc[i].cnt_arr = (int *)malloc(col_w * sizeof(int));
+        prc[i].cnt_len = col_w;
+
+        int j = 0;
+        memset(is_extra, false, MAX * sizeof(bool));
         while (read_num(num_p)) {
             num = *num_p;
             if (key[0] != 'E' && !is_extra[num]) {
-                prc[i][j] = num;
+                prc[i].cnt_arr[j] = num;
                 is_extra[num] = true;
                 ++j;
             } else if (key[0] == 'E') {
-                prc[i][j] = num;
+                prc[i].cnt_arr[j] = num;
                 ++j;
             }
         }
         num = *num_p;
         if (key[0] != 'E' && !is_extra[num]) {
-            prc[i][j] = num;
+            prc[i].cnt_arr[j] = num;
         } else if (key[0] == 'E') {
-            prc[i][j] = num;
+            prc[i].cnt_arr[j] = num;
         }
     }
 }
 
+/*
 void ans_query() {
     int q_num;
     scanf("%d", &q_num);
@@ -128,6 +130,7 @@ void ans_query() {
 
     }
 }
+*/
 
 bool read_char(char *res) {
     char c;
@@ -154,6 +157,7 @@ bool read_num(int *res) {
     return rtv;
 }
 
+/*
 bool apply_prc(int *a_row, int *a_col) {
     bool rtv = true;
     for (int i = 0; i < prc_num; ++i) {
@@ -187,7 +191,9 @@ bool apply_prc(int *a_row, int *a_col) {
     }
     return rtv;
 }
+*/
 
+/*
 void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
         int j_end = prc[i][0];
@@ -206,3 +212,4 @@ void dbg_cat_prc_info() {
         putchar('\n');
     }
 }
+*/
