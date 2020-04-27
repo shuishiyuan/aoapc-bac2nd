@@ -52,7 +52,7 @@ int main() {
 
 void cons_prc_info() {
     prc = (CMD *)malloc(prc_num * sizeof(CMD *));
-    prc_key = (char **)malloc(prc_num * sizeof(char *));
+    // prc_key = (char **)malloc(prc_num * sizeof(char *));
     char key[MAX_KEY_W];
     for (int i = 0; i < prc_num; ++i) {
         // exclude the begining 0x0a(new line character)
@@ -60,7 +60,7 @@ void cons_prc_info() {
             --i;
             continue;
         }
-        prc_key[i] = (char *)malloc(MAX_KEY_W * sizeof(char));
+        // prc_key[i] = (char *)malloc(MAX_KEY_W * sizeof(char));
         // prc[i].key = (char *)malloc(MAX_KEY_W * sizeof(char));
         sprintf(prc[i].key, "%s", key);
         int num;
@@ -157,32 +157,31 @@ bool read_num(int *res) {
     return rtv;
 }
 
-/*
 bool apply_prc(int *a_row, int *a_col) {
     bool rtv = true;
     for (int i = 0; i < prc_num; ++i) {
         int q_row = *a_row;
         int q_col = *a_col;
-        if (prc_key[i][0] == 'E') {
-            if (prc[i][0] == q_row && prc[i][1] == q_col) {
-                *a_row = prc[i][2];
-                *a_col = prc[i][3];
-            } else if (prc[i][2] == q_row && prc[i][3] == q_col) {
-                *a_row = prc[i][0];
-                *a_col = prc[i][1];
+        if (prc[i].key[0] == 'E') {
+            if (prc[i].cnt_arr[0] == q_row && prc[i].cnt_arr[1] == q_col) {
+                *a_row = prc[i].cnt_arr[2];
+                *a_col = prc[i].cnt_arr[3];
+            } else if (prc[i].cnt_arr[2] == q_row && prc[i].cnt_arr[3] == q_col) {
+                *a_row = prc[i].cnt_arr[0];
+                *a_col = prc[i].cnt_arr[1];
             }
         } else {
             int adj_r = 0;
             int adj_c = 0;
-            for (int j = 1; j <=  prc[i][0]; ++j) {
-                if (prc_key[i][0] == 'I') {
-                    if (prc_key[i][1] == 'R' && prc[i][j] <= q_row) adj_r++;
-                    if (prc_key[i][1] == 'C' && prc[i][j] <= q_col) adj_c++;
+            for (int j = 1; j <=  prc[i].cnt_len; ++j) {
+                if (prc[i].key[0] == 'I') {
+                    if (prc[i].key[1] == 'R' && prc[i].cnt_arr[j] <= q_row) adj_r++;
+                    if (prc[i].key[1] == 'C' && prc[i].cnt_arr[j] <= q_col) adj_c++;
                 } else {
-                    if (prc_key[i][1] == 'R' && prc[i][j] == q_row) return false;
-                    if (prc_key[i][1] == 'C' && prc[i][j] == q_col) return false;
-                    if (prc_key[i][1] == 'R' && prc[i][j] < q_row) adj_r--;
-                    if (prc_key[i][1] == 'C' && prc[i][j] < q_col) adj_c--;
+                    if (prc[i].key[1] == 'R' && prc[i].cnt_arr[j] == q_row) return false;
+                    if (prc[i].key[1] == 'C' && prc[i].cnt_arr[j] == q_col) return false;
+                    if (prc[i].key[1] == 'R' && prc[i].cnt_arr[j] < q_row) adj_r--;
+                    if (prc[i].key[1] == 'C' && prc[i].cnt_arr[j] < q_col) adj_c--;
                 }
             }
             *a_row += adj_r;
@@ -191,7 +190,6 @@ bool apply_prc(int *a_row, int *a_col) {
     }
     return rtv;
 }
-*/
 
 /*
 void dbg_cat_prc_info() {
