@@ -11,7 +11,7 @@
 int row_num;
 int col_num;
 int prc_num;
-char **prc_key;
+// char **prc_key;
 // char (*prc_key)[MAX_KEY_W];
 bool is_extra[MAX];
 
@@ -45,7 +45,7 @@ int main() {
 
     cons_prc_info();
 
-    // ans_query();
+    ans_query();
 
     return 0;
 }
@@ -101,7 +101,6 @@ void cons_prc_info() {
     }
 }
 
-/*
 void ans_query() {
     int q_num;
     scanf("%d", &q_num);
@@ -130,7 +129,6 @@ void ans_query() {
 
     }
 }
-*/
 
 bool read_char(char *res) {
     char c;
@@ -191,23 +189,21 @@ bool apply_prc(int *a_row, int *a_col) {
     return rtv;
 }
 
-/*
 void dbg_cat_prc_info() {
     for (int i = 0; i < prc_num; ++i) {
-        int j_end = prc[i][0];
-        int k = 1;
-        printf("%s ", prc_key[i]);
-        if (prc_key[i][0] == 'E') {
+        int j_end = prc[i].cnt_len;
+        int k = 0;
+        printf("%s ", prc[i].key);
+        if (prc[i].key[0] == 'E') {
             j_end = 3;
             k = 0;
         } else {
             printf("%d ", j_end);
         }
-        while (k <= j_end) {
-            printf("%d ", prc[i][k]);
+        while (k < j_end) {
+            printf("%d ", prc[i].cnt_arr[k]);
             ++k;
         }
         putchar('\n');
     }
 }
-*/
