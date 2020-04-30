@@ -30,7 +30,6 @@ bool read_char(char *);
 bool read_num(int *);
 bool apply_prc(int *, int *);
 
-void dbg_cat_ws_info();
 void dbg_cat_prc_info();
 /* --function declaration end-- */
 
@@ -44,6 +43,8 @@ int main() {
     scanf("%d", &prc_num);
 
     cons_prc_info();
+
+    dbg_cat_prc_info();
 
     ans_query();
 
@@ -77,6 +78,7 @@ void cons_prc_info() {
             col_w = 4;
         }
         prc[i].cnt_arr = (int *)malloc(col_w * sizeof(int));
+        // memset(prc[i].cnt_arr, 0, col_w * sizeof(int));
         prc[i].cnt_len = col_w;
 
         int j = 0;
@@ -195,7 +197,7 @@ void dbg_cat_prc_info() {
         int k = 0;
         printf("%s ", prc[i].key);
         if (prc[i].key[0] == 'E') {
-            j_end = 3;
+            j_end = 4;
             k = 0;
         } else {
             printf("%d ", j_end);
