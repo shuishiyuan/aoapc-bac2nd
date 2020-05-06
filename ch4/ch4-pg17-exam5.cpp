@@ -173,7 +173,7 @@ bool apply_prc(int *a_row, int *a_col) {
         } else {
             int adj_r = 0;
             int adj_c = 0;
-            for (int j = 1; j <=  prc[i].cnt_len; ++j) {
+            for (int j = 0; j <  prc[i].cnt_len; ++j) {
                 if (prc[i].key[0] == 'I') {
                     if (prc[i].key[1] == 'R' && prc[i].cnt_arr[j] <= q_row) adj_r++;
                     if (prc[i].key[1] == 'C' && prc[i].cnt_arr[j] <= q_col) adj_c++;
