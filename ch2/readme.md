@@ -10,6 +10,7 @@ examples + exercises + other programs
 ==============
 ## Print the value of 1,2,3,...,n
 ### ch2-pg1.cpp
+### ch2-pg1.js
 
 ## The 7744(aabb) Problem
 ### ch2-pg2-exam1.cpp
