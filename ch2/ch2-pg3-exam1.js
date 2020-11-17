@@ -1,17 +1,17 @@
 console.log("The 2nd approach of 7744(aabb) Problem");
-for (let i = 11; i < 100; ++i) {
-    let j = Math.pow(i, 2);
-    if (j < 1000) {
+for (let base = 11; base < 100; ++base) {
+    let aabb = Math.pow(base, 2);
+    if (aabb < 1000) {
         continue;
     }
-    if (j > 10000) {
+    if (aabb > 9999) {
         break;
     }
-    let k = Math.ceil(j / 100);
-    let l = j % 100;
-    if ((Math.ceil(k / 10) == k % 10) 
-        && (Math.ceil(l / 10) == l % 10)) {
-        console.log(`The 7744(aabb) number is: ${j} with the base ${i}`);
-        console.log(`The value of k: ${k} and the value of l: ${l}`);
+    let highNum = Math.floor(aabb / 100);
+    let lowNum = aabb % 100;
+    if ((Math.floor(highNum / 10) == highNum % 10) 
+        && (Math.floor(lowNum / 10) == lowNum % 10)) {
+        console.log(`The 7744(aabb) number is: ${aabb} with the base ${base}`);
+        console.log(`The valowNumue of highNum: ${highNum} and the valowNumue of lowNum: ${lowNum}`);
     }
 }

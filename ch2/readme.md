@@ -18,6 +18,7 @@ examples + exercises + other programs
 
 ## The 7744(aabb) Problem
 ### ch2-pg3-exam1.cpp
+### ch2-pg3-exam1.js
 
 ## The 3n+1 Problem
 ### ch2-pg4-exam2.cpp
