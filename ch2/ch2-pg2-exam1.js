@@ -1,4 +1,4 @@
-console.log("The 7744(aabb) Problem");
+console.log("The 1st approach of 7744(aabb) Problem");
 let n = 0;
 for (let i = 1; i <=9; ++i) {
     for (let j = 0; j <= 9; ++j) {
