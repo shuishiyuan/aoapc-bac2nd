@@ -22,6 +22,7 @@ examples + exercises + other programs
 
 ## The 3n+1 Problem
 ### ch2-pg4-exam2.cpp
+### ch2-pg4-exam2.js
 
 ## The 3n+1 Problem
 ### ch2-pg5-exam2.cpp
