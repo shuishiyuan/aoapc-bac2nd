@@ -26,6 +26,7 @@ examples + exercises + other programs
 
 ## The 3n+1 Problem
 ### ch2-pg5-exam2.cpp
+### ch2-pg5-exam2.js
 
 ## The PI / 4 approximate value Problem
 ### ch2-pg6-exam3.cpp
