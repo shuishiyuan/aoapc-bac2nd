@@ -8,6 +8,7 @@ cmdLineReader.on('close', () => {
 });
 
 let n = 0;
+// let n = 0;
 
 cmdLineReader.on('line', (input) => {
     n = parseInt(input);
