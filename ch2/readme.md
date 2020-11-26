@@ -34,6 +34,7 @@ examples + exercises + other programs
 
 ## The sum of the factorial
 ### ch2-pg7-exam4.cpp
+### ch2-pg7-exam4.js
 
 ## The sum of the factorial
 ### ch2-pg8-exam4.cpp
