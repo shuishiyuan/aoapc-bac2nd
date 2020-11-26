@@ -30,6 +30,7 @@ examples + exercises + other programs
 
 ## The PI / 4 approximate value Problem
 ### ch2-pg6-exam3.cpp
+### ch2-pg6-exam3.js
 
 ## The sum of the factorial
 ### ch2-pg7-exam4.cpp
