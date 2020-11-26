@@ -13,6 +13,8 @@ do {
     }
     i++;
 // } while(entry > 1e-6)
-} while(entry > 0.0001)
+// } while(entry > 0.0001)
+// } while(entry > Math.pow(10, -6))
+} while(entry > Math.pow(Math.E, -6))
 
 console.log(`The approximated value of PI / 4 is: ${sum}`);
