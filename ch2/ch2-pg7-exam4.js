@@ -7,6 +7,7 @@ cmdLineReader.on('close', () => {
     process.exit()
 });
 
+const MOD = 1000000;
 let n = 0;
 
 cmdLineReader.on('line', (input) => {
@@ -15,6 +16,7 @@ cmdLineReader.on('line', (input) => {
         cmdLineReader.close();
     }
     let sum = 0;
+    console.time('main-pro-time');
     for (let i = 1; i <= n; i++) {
         let factorial = 1;
         for (j = 1; j <= i; j++) {
@@ -22,5 +24,6 @@ cmdLineReader.on('line', (input) => {
         }
         sum += factorial;
     }
-    console.log(`The sum of factorial from 1 to ${n} is: ${sum}`);
+    console.timeEnd('main-pro-time');
+    console.log(`The sum of factorial from 1 to ${n} is: ${sum % MOD}`);
 })
