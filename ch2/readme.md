@@ -39,6 +39,7 @@ examples + exercises + other programs
 
 ## The sum of the factorial
 ### ch2-pg8-exam4.cpp
+### ch2-pg8-exam4.js
 
 ## Number data statics1 with scanf
 ### ch2-pg9-exam5.cpp
