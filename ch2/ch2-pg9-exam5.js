@@ -1,0 +1,1 @@
+console.log("Number data statics1 with readline");
