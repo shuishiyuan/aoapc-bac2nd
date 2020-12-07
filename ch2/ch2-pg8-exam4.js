@@ -26,13 +26,13 @@ let processSum = (n) => {
     }
 }
 
+console.time('sum-process-time');
 cmdLineReader.on('line', (input) => {
-    if (input === 0) {
+    n = parseInt(input);
+    if (n === 0) {
         cmdLineReader.close();
     }
-    n = input;
-    console.time('sum-process-time');
-    sum = processSum(n);
+    processSum(n);
     console.timeLog('sum-process-time', sum);
     console.log(`The sum of factorial from 1 to ${n} is: ${sum}`);
 });
