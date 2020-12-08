@@ -1,4 +1,4 @@
-console.log("Number data statics1 with readline");
+console.log("Number data statics1 with cmd readline");
 const lineReader = require("readline");
 const cmdLineReader = lineReader.createInterface({
     input: process.stdin
