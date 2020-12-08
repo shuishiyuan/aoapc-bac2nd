@@ -43,6 +43,7 @@ examples + exercises + other programs
 
 ## Number data statics1 with scanf
 ### ch2-pg9-exam5.cpp
+### ch2-pg9-exam5.js
 
 ## Number data statics1 with freopen
 ### ch2-pg10-exam5.cpp
