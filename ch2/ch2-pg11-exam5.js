@@ -6,7 +6,7 @@ const rs = fs.createReadStream("data/ch2-pg11-exam5.in");
 const ws = fs.createWriteStream("data/ch2-pg11-exam5.out");
 
 const rl = require("readline");
-const { once } = require("process");
+const { once } = require("events");
 
 let digit = 0;
 let sum = 0;
@@ -30,11 +30,14 @@ let min = 0;
             min = digit;
         }
     }
-    // await once(frl, 'close');
+    await once(frl, 'close');
+    frl.on('close', () => {
+        console.log(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
+    })
     // await once('beforeExit', () => {
-    once('beforeExit', () => {
+    /* once('beforeExit', () => {
         console.log(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
         ws.write(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
-    });
+    }); */
 })();
 // processLine();
