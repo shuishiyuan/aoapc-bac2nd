@@ -13,12 +13,18 @@ let sum = 0;
 let counter = 0;
 let max = 0;
 let min = 0;
-// async function processLine() {
-(async () => {
-    const frl = rl.createInterface({
-        input: rs
-    });
 
+const frl = rl.createInterface({
+    input: rs
+});
+
+frl.on('close', () => {
+    console.log(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
+    ws.write(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}${os.EOL}`);
+    process.exit();
+});
+
+const processLine =  async () => {
     for await (const input of frl) {
         counter++;
         digit = parseInt(input);
@@ -30,14 +36,11 @@ let min = 0;
             min = digit;
         }
     }
-    await once(frl, 'close');
-    frl.on('close', () => {
-        console.log(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
-    })
+    // await once(frl, 'close');
     // await once('beforeExit', () => {
     /* once('beforeExit', () => {
         console.log(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
         ws.write(`Counter:${counter}\tAverage:${(sum / counter).toFixed(3)}\tMax:${max}\tMin:${min}`);
     }); */
-})();
-// processLine();
+};
+processLine();
