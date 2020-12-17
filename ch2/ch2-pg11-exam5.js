@@ -11,12 +11,12 @@ const { once } = require("events");
 let digit = 0;
 let sum = 0;
 let counter = 0;
-let max = 9 << 2;
-// let max = (-1) >> 1;
-// let max = 0x8000000000000000;
-let min = (~ 0) >> 1;
-// let min = max + 1;
+let min = Number.MAX_SAFE_INTEGER;
 // let min = 0x7fffffffffffffff;
+// let min = Number.MAX_VALUE;
+let max = Number.MIN_SAFE_INTEGER;
+// let max = -0x8000000000000000;
+// let max = Number.MIN_VALUE;
 console.log(`max: ${max}\tmin: ${min}`);
 
 const frl = rl.createInterface({
