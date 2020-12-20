@@ -51,6 +51,7 @@ examples + exercises + other programs
 
 ## Number data statics1 with fopen
 ### ch2-pg11-exam5.cpp
+### ch2-pg11-exam5.js
 
 ## Number data statics2
 ### ch2-pg12-exam6.cpp
