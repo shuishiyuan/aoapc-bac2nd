@@ -1,10 +1,9 @@
 console.log("Number data statics2");
-const { count } = require("console");
-const { realpath } = require("fs");
-const { join } = require("path");
+const workspaceFolder = 'D:/MINE/workspace/aoapc-bac2nd'
+const fs = require("fs");
 const readline = require("readline");
 const rl = readline.createInterface({
-    input: process.stdin
+    input: fs.createReadStream(`${workspaceFolder}/ch2/data/ch2-pg12-exam6.in`)
 });
 rl.on('close', () => {
     process.exit()
