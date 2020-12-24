@@ -55,6 +55,7 @@ examples + exercises + other programs
 
 ## Number data statics2
 ### ch2-pg12-exam6.cpp
+### ch2-pg12-exam6.js
 
 ## Daffodil
 ### ch2-pg13-exer1.cpp
