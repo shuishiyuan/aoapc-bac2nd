@@ -5,39 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) パイプの起動",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "プログラム名を入力してください (例: ${workspaceFolder}/a.exe)",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "pipeTransport": {
-                "debuggerPath": "/usr/bin/gdb",
-                "pipeProgram": "<plink.exe などのパイプ プログラムへの完全なパス>",
-                "pipeArgs": [],
-                "pipeCwd": ""
-            },
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "gdb の再フォーマットを有効にする",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        
-        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\ch2\\ch2-pg12-exam6.js"
+            "program": "${workspaceFolder}\\ch2\\ch2-pg13-exer1.js"
         }
     ]
 }
