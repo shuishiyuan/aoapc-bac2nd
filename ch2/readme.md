@@ -59,6 +59,7 @@ examples + exercises + other programs
 
 ## Daffodil
 ### ch2-pg13-exer1.cpp
+### ch2-pg13-exer1.js
 
 ## Hanxin
 ### ch2-pg14-exer2.cpp
