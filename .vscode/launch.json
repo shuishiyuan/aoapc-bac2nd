@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\ch2\\ch2-pg13-exer1.js"
+            "program": "${workspaceFolder}\\ch2\\ch2-pg14-exer2.js"
         }
     ]
 }

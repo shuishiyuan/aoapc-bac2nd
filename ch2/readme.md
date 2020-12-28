@@ -63,6 +63,7 @@ examples + exercises + other programs
 
 ## Hanxin
 ### ch2-pg14-exer2.cpp
+### ch2-pg14-exer2.js
 
 ## Reverise Triangle
 ### ch2-pg15-exer3.cpp
