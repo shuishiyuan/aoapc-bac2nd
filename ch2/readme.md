@@ -67,6 +67,7 @@ examples + exercises + other programs
 
 ## Reverise Triangle
 ### ch2-pg15-exer3.cpp
+### ch2-pg16-exer3.cpp
 
 ## Subsequence
 ### ch2-pg16-exer4.cpp
