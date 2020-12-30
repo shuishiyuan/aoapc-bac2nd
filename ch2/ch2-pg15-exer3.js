@@ -18,11 +18,14 @@ const justDoIt = async () => {
         }
         for (let i = 0; i < n; ++i) {
             let lineStr = '';
-            for (let j = 0; j < i; ++j) {
+            let j = 0;
+            while (j < i) {
                 lineStr += ' ';
+                ++j;
             }
-            for (let j = i; j < 2 * n - 1 - i; ++j) {
+            while (j < 2 * n - 1 - i) {
                 lineStr += '*';
+                ++j;
             }
             console.log(lineStr);
         }
