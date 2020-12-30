@@ -21,7 +21,7 @@ const justDoIt = async () => {
             for (let j = 0; j < i; ++j) {
                 lineStr += ' ';
             }
-            for (let j = 2 * (n - i) - 1; j > 0; --j) {
+            for (let j = i; j < 2 * n - 1 - i; ++j) {
                 lineStr += '*';
             }
             console.log(lineStr);
