@@ -75,6 +75,7 @@ examples + exercises + other programs
 
 ## decimal
 ### ch2-pg17-exer5.cpp
+### ch2-pg17-exer5.js
 
 ## Permutation
 ### ch2-pg18-exer6.cpp 
