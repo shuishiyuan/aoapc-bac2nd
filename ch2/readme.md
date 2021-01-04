@@ -71,6 +71,7 @@ examples + exercises + other programs
 
 ## Subsequence
 ### ch2-pg16-exer4.cpp
+### ch2-pg16-exer4.js
 
 ## decimal
 ### ch2-pg17-exer5.cpp

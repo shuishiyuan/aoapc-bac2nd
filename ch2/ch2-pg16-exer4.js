@@ -1,5 +1,4 @@
 console.log("Subsequence");
-const { readlink } = require("fs");
 const readLine = require("readline");
 const rl = readLine.createInterface({
     input: process.stdin
@@ -26,7 +25,7 @@ const processLine = async () => {
         for (let i = n; i <= m; ++i) {
             sum += 1 / Math.pow(i, 2);
         }
-        console.log(`The Subsequence value of ${n} and ${m} is: ${(sum + 0).toFixed(5)}`);
+        console.log(`The Subsequence value of ${n} and ${m} is: ${sum.toFixed(5)}`);
         counter = 1;
     }
 }
