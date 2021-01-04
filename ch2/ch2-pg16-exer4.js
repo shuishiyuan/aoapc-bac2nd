@@ -25,8 +25,10 @@ const processLine = async () => {
         let sum = 0;
         for (let i = n; i <= m; ++i) {
             sum += 1 / Math.pow(i, 2);
+            console.log(`I am here with n: ${n}\tm: ${m}\tsum: ${sum}`);
         }
-        console.log(`The Subsequence value of ${n} and ${m} is: ${sum.tofixed(5)}`);
+        console.log(`The Subsequence value of ${n} and ${m} is: ${Math.round(sum)}`);
+        // console.log(`The Subsequence value of ${n} and ${m} is: ${sum.tofixed(5)}`);
         counter = 1;
     }
 }
