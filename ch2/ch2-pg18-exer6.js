@@ -8,7 +8,9 @@ const isPermutation = () => {
     const a = parseInt(curDigiArr.substr(0, 3));
     const b = parseInt(curDigiArr.substr(3, 3));
     const c = parseInt(curDigiArr.substr(6, 3));
-    if (b * b == a * c) {
+    const aDivideB = (a / b).toFixed(5);
+    const bDivideC = (b / c).toFixed(5);
+    if (aDivideB == bDivideC) {
         rtnValue = true;
     }
     return rtnValue;
@@ -22,7 +24,6 @@ const consDigits = () => {
                 console.log(`The digit array is ${curDigiArr}`);
             }
             // curDigiArr = '';
-            layerCnt--;
             return;
             // process.exit();
         }
@@ -33,7 +34,9 @@ const consDigits = () => {
         curDigiArr += i;
         // curDigiArr.push('' + i);
         consDigits();
-        if (layerCnt == 2) {
+        layerCnt--;
+        curDigiArr = curDigiArr.substr(0, curDigiArr.length - 1);
+        if (layerCnt == 1) {
             curDigiArr = '';
         }
     }
