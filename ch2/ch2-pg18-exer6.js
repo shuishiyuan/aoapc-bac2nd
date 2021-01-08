@@ -1,44 +1,35 @@
 console.log("Permutation");
 
 let curDigiArr = '';
-let layerCnt = 0;
-// let curDigiArr = [];
-const isPermutation = () => {
-    let rtnValue = false;
-    const a = parseInt(curDigiArr.substr(0, 3));
-    const b = parseInt(curDigiArr.substr(3, 3));
-    const c = parseInt(curDigiArr.substr(6, 3));
-    const aDivideB = (a / b).toFixed(5);
-    const bDivideC = (b / c).toFixed(5);
-    if (aDivideB == bDivideC) {
-        rtnValue = true;
-    }
-    return rtnValue;
-}
-
+// let layerCnt = 0;
 const consDigits = () => {
-    layerCnt++;
+    // layerCnt++;
     for (let i = 1; i <= 9; ++i) {
         if (curDigiArr.length == 9) {
-            if (isPermutation()) {
-                console.log(`The digit array is ${curDigiArr}`);
-            }
-            // curDigiArr = '';
+            judgePermutation();
             return;
-            // process.exit();
         }
         if (curDigiArr.indexOf(i) != -1) {
-            // if (curDigiArr.indexOf('' + i)) {
             continue;
         }
         curDigiArr += i;
-        // curDigiArr.push('' + i);
         consDigits();
-        layerCnt--;
+        // layerCnt--;
         curDigiArr = curDigiArr.substr(0, curDigiArr.length - 1);
-        if (layerCnt == 1) {
-            curDigiArr = '';
-        }
     }
 }
+
+const judgePermutation = () => {
+    const a = parseInt(curDigiArr.substr(0, 3));
+    const b = parseInt(curDigiArr.substr(3, 3));
+    const c = parseInt(curDigiArr.substr(6, 3));
+    const aDivideB = (a / b).toFixed(4);
+    const bDivideC = (b / c).toFixed(4);
+    if (aDivideB == bDivideC) {
+        console.log(`The permutation digits are: ${a}\t${b}\t${c}`);
+    }
+}
+
+console.time("Permutation");
 consDigits();
+console.timeEnd("Permutation");
