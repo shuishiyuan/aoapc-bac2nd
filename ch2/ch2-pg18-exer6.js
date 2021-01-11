@@ -9,7 +9,7 @@ const consDigits = () => {
             judgePermutation();
             return;
         }
-        if (curDigiArr.indexOf(i) != -1) {
+        if (curDigiArr.includes(i)) {
             continue;
         }
         curDigiArr.push(i);
@@ -21,11 +21,14 @@ const consDigits = () => {
 
 const judgePermutation = () => {
     const curDigiStr = curDigiArr.join('');
+
     const a = parseInt(curDigiStr.substr(0, 3));
     const b = parseInt(curDigiStr.substr(3, 3));
     const c = parseInt(curDigiStr.substr(6, 3));
+
     const aDivideB = (a / b).toFixed(4);
     const bDivideC = (b / c).toFixed(4);
+
     if (aDivideB == bDivideC) {
         console.log(`The permutation digits are: ${a}\t${b}\t${c}`);
     }
