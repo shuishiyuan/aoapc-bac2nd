@@ -1,7 +1,6 @@
 console.log("Permutation");
 
 let curDigiArr = [];
-// let curDigiArr = '';
 // let layerCnt = 0;
 const consDigits = () => {
     // layerCnt++;
@@ -14,18 +13,17 @@ const consDigits = () => {
             continue;
         }
         curDigiArr.push(i);
-        // curDigiArr += i;
         consDigits();
         // layerCnt--;
         curDigiArr.pop();
-        // curDigiArr = curDigiArr.substr(0, curDigiArr.length - 1);
     }
 }
 
 const judgePermutation = () => {
-    const a = parseInt(curDigiArr.toString().substr(0, 3));
-    const b = parseInt(curDigiArr.toString().substr(3, 3));
-    const c = parseInt(curDigiArr.toString().substr(6, 3));
+    const curDigiStr = curDigiArr.join('');
+    const a = parseInt(curDigiStr.substr(0, 3));
+    const b = parseInt(curDigiStr.substr(3, 3));
+    const c = parseInt(curDigiStr.substr(6, 3));
     const aDivideB = (a / b).toFixed(4);
     const bDivideC = (b / c).toFixed(4);
     if (aDivideB == bDivideC) {

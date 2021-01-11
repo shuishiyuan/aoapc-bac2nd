@@ -79,6 +79,7 @@ examples + exercises + other programs
 
 ## Permutation
 ### ch2-pg18-exer6.cpp 
+### ch2-pg18-exer6.js
 
 ## Print the value of 2,4,6,...,2n
 ### ch2-pg19-extra1.cpp 
