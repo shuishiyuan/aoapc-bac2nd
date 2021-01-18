@@ -10,6 +10,7 @@ examples + exercises + other programs
 ==============
 ## Reversing Input
 ### ch3-pg1.cpp
+### ch3-pg1.js
 
 ## Opening lights
 ### ch3-pg2.cpp
