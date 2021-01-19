@@ -9,11 +9,22 @@ rl.on('close', () => {
 
 let printStatus = (lightArr) => {
     let statusArr = [];
-    lightArr.array.forEach(element => {
+    /* lightArr.forEach((element, idx) => {
         if (element) {
-            statusArr.push(lightArr.indexOf(element));
+            statusArr.push(idx);
         }
-    });
+    }); */
+    /* for (idx in lightArr) {
+        if (lightArr[idx]) {
+            statusArr.push(idx);
+        }
+    } */
+    for (let item of lightArr) {
+        if (item) {
+            statusArr.push(lightArr.toString().indexOf(item));
+        }
+    }
+    console.log(`The Current Status of light is: ${statusArr}`);
 }
 
 (async () => {
@@ -22,16 +33,17 @@ let printStatus = (lightArr) => {
             rl.close();
         }
         let lightArr = [];
-        let inputArr = input.trim().split(' ');
+        let inputArr = input.trim().split('\t');
         let k = parseInt(inputArr[0]);
         let n = parseInt(inputArr[1]);
 
         for (let i = 1; i <= k; ++i) {
             for (let j = i; j <= n; j += i) {
-                lightArr[j - 1] = !lightArr[j - 1];
+                lightArr[j] = !lightArr[j];
             }
-            console.log(`The light status after the ${i} th person is: ${lightArr}`);
+            // console.log(`The light status after the ${i} th person is: ${lightArr}`);
+            printStatus(lightArr);
         }
-        printStatus(lightArr);
+        // printStatus(lightArr);
     }
 })();
