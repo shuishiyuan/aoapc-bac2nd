@@ -14,16 +14,17 @@ let printStatus = (lightArr) => {
             statusArr.push(idx);
         }
     }); */
-    /* for (idx in lightArr) {
+    for (idx in lightArr) {
         if (lightArr[idx]) {
             statusArr.push(idx);
         }
-    } */
+    }
+    /* let lightStr = lightArr.toString();
     for (let item of lightArr) {
         if (item) {
-            statusArr.push(lightArr.toString().indexOf(item));
+            statusArr.push(lightStr.indexOf(item));
         }
-    }
+    } */
     console.log(`The Current Status of light is: ${statusArr}`);
 }
 

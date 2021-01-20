@@ -14,6 +14,7 @@ examples + exercises + other programs
 
 ## Opening lights
 ### ch3-pg2.cpp
+### ch3-pg2.js
 
 ## Snake Matrics
 ### ch3-pg3.cpp
