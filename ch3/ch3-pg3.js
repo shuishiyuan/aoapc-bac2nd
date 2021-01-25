@@ -9,6 +9,16 @@ rl.on('close', () => {
 
 let snakArr;
 
+const initiate = (n) => {
+    snakArr = [];
+    for (let i = 0; i < n; ++i) {
+        snakArr[i] = [];
+        for (let j = 0; j < n; ++j) {
+            snakArr[i][j] = NaN;
+        }
+    }
+}
+
 const goAhead = (n) => {
     for (let i = 0; i < n; ++i) {
         snakArr[i][n - 1] = i + 1;
@@ -24,6 +34,7 @@ const printArr = () => {
         });
         output += '\n';
     });
+    console.log(`${output}`);
 }
 
 (async () => {
@@ -32,7 +43,7 @@ const printArr = () => {
             rl.close();
         }
         let n = parseInt(input);
-        snakArr = [[]];
+        initiate(n);
         goAhead(n);
         printArr();
     }
