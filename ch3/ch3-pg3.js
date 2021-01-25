@@ -19,10 +19,21 @@ const initiate = (n) => {
     }
 }
 
-const goAhead = (n) => {
-    for (let i = 0; i < n; ++i) {
-        snakArr[i][n - 1] = i + 1;
+const goAhead = (n, isVertical) => {
+    if (n === 0) {
+        return;
     }
+    if (isVertical) {
+        for (let i = 0; i < n; ++i) {
+            snakArr[i][n - 1] = i + 1;
+        }
+
+    } else {
+        for (let i = 0; i < n; ++i) {
+            snakArr[i][n - 1] = i + 1;
+        }
+    }
+    goAhead(n - 1, !isVertical);
 }
 
 const printArr = () => {
@@ -44,7 +55,7 @@ const printArr = () => {
         }
         let n = parseInt(input);
         initiate(n);
-        goAhead(n);
+        goAhead(n, true);
         printArr();
     }
 })();
