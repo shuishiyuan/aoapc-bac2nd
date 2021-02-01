@@ -8,6 +8,7 @@ rl.on('close', () => {
 });
 
 let snakArr;
+let curDgt = 1;
 
 const initiate = (n) => {
     snakArr = [];
@@ -19,21 +20,28 @@ const initiate = (n) => {
     }
 }
 
-const goAhead = (n, isVertical) => {
+const goAhead = (n, direction) => {
     if (n === 0) {
         return;
     }
-    if (isVertical) {
+    if (direction % 4 === 1) {
+        for (let i = 0; i < n; ++i) {
+            snakArr[i][n - 1] = curDgt++;
+        }
+    } else if (direction % 4 === 2) {
+        for (let i = n - 1; i >= 0; --i) {
+            snakArr[n][i] = curDgt++;
+        }
+    } else if (direction % 4 === 3) {
         for (let i = 0; i < n; ++i) {
             snakArr[i][n - 1] = i + 1;
         }
-
     } else {
         for (let i = 0; i < n; ++i) {
             snakArr[i][n - 1] = i + 1;
         }
     }
-    goAhead(n - 1, !isVertical);
+    goAhead(n - 1, !direction);
 }
 
 const printArr = () => {
@@ -55,7 +63,7 @@ const printArr = () => {
         }
         let n = parseInt(input);
         initiate(n);
-        goAhead(n, true);
+        goAhead(n, 1);
         printArr();
     }
 })();
