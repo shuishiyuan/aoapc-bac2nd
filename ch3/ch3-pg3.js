@@ -27,12 +27,17 @@ const goAhead = (n, direction) => {
         return;
     }
     if (direction % 4 === 1) {
-        for (let i = 0; i < n; ++i) {
-            snakArr[i][curCol] = curDgt++;
-            // snakArr[i][n - 1] = curDgt++;
+        while (curRow < n) {
+            snakArr[curRow][curCol] = curDgt++;
+            if (curRow == n - 1) {
+                break;
+            }
+            if (snakArr[curRow + 1][curCol] != NaN) {
+                curCol--;
+                break;
+            }
+            curRow++
         }
-        curRow = n - 1;
-        n--;
     } else if (direction % 4 === 2) {
         for (let i = n - 1; i >= 0; --i) {
             snakArr[curRow][i] = curDgt++;
@@ -47,7 +52,7 @@ const goAhead = (n, direction) => {
         }
         n--;
     }
-    goAhead(n, !direction);
+    goAhead(n, ++direction);
 }
 
 const printArr = () => {
