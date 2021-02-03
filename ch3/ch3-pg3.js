@@ -29,7 +29,8 @@ const goAhead = (n, direction) => {
     if (direction % 4 === 1) {
         while (curRow < n) {
             snakArr[curRow][curCol] = curDgt++;
-            if (curRow == n - 1) {
+            if (curRow === n - 1) {
+                curCol--;
                 break;
             }
             if (snakArr[curRow + 1][curCol] != NaN) {
@@ -39,18 +40,45 @@ const goAhead = (n, direction) => {
             curRow++
         }
     } else if (direction % 4 === 2) {
-        for (let i = n - 1; i >= 0; --i) {
-            snakArr[curRow][i] = curDgt++;
+        while (curCol >= 0) {
+            snakArr[curRow][curCol] = curDgt++;
+            if (curCol === 0) {
+                curRow--;
+                break;
+            }
+            if (snakArr[curRow][curCol - 1] != NaN) {
+                curRow--;
+                break;
+            }
+            curCol--;
         }
     } else if (direction % 4 === 3) {
-        for (let i = 0; i < n; ++i) {
-            snakArr[i][n - 1] = i + 1;
+        while (curRow >= 0) {
+            snakArr[curRow][curCol] = curDgt++;
+            if (curRow === 0) {
+                curCol++;
+                break;
+            }
+            if (snakArr[curRow - 1][curCol] != NaN) {
+                curCol++;
+                break;
+            }
+            curRow--;
         }
     } else {
-        for (let i = 0; i < n; ++i) {
-            snakArr[i][n - 1] = i + 1;
+        while (curCol < n) {
+            snakArr[curRow][curCol] = curDgt++;
+            if (curCol === n - 1) {
+                curRow++;
+                break;
+            }
+            if (snakArr[curRow][curCol + 1] != NaN) {
+                curRow++;
+                break;
+            }
+            curCol++;
         }
-        n--;
+        // n--;
     }
     goAhead(n, ++direction);
 }
@@ -74,6 +102,7 @@ const printArr = () => {
         }
         let n = parseInt(input);
         initiate(n);
+        curRow = 0;
         curCol = n - 1;
         goAhead(n, 1);
         printArr();
