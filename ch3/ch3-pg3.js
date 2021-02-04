@@ -23,7 +23,7 @@ const initiate = (n) => {
 }
 
 const goAhead = (n, direction) => {
-    if (n === 0) {
+    if (snakArr[curRow][curCol] !== 'NaN') {
         return;
     }
     if (direction % 4 === 1) {
@@ -37,6 +37,7 @@ const goAhead = (n, direction) => {
                 curRow++
             } else {
                 curCol--;
+                break;
             }
         }
     } else if (direction % 4 === 2) {
@@ -80,7 +81,7 @@ const goAhead = (n, direction) => {
         }
         // n--;
     }
-    goAhead(--n, ++direction);
+    goAhead(n, ++direction);
 }
 
 const printArr = () => {
