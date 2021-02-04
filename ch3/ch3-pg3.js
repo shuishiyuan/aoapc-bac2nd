@@ -17,7 +17,7 @@ const initiate = (n) => {
     for (let i = 0; i < n; ++i) {
         snakArr[i] = [];
         for (let j = 0; j < n; ++j) {
-            snakArr[i][j] = NaN;
+            snakArr[i][j] = 'NaN';
         }
     }
 }
@@ -33,11 +33,11 @@ const goAhead = (n, direction) => {
                 curCol--;
                 break;
             }
-            if (snakArr[curRow + 1][curCol] != NaN) {
+            if (snakArr[curRow + 1][curCol] === 'NaN') {
+                curRow++
+            } else {
                 curCol--;
-                break;
             }
-            curRow++
         }
     } else if (direction % 4 === 2) {
         while (curCol >= 0) {
@@ -46,7 +46,7 @@ const goAhead = (n, direction) => {
                 curRow--;
                 break;
             }
-            if (snakArr[curRow][curCol - 1] != NaN) {
+            if (snakArr[curRow][curCol - 1] !== 'NaN') {
                 curRow--;
                 break;
             }
@@ -59,7 +59,7 @@ const goAhead = (n, direction) => {
                 curCol++;
                 break;
             }
-            if (snakArr[curRow - 1][curCol] != NaN) {
+            if (snakArr[curRow - 1][curCol] !== 'NaN') {
                 curCol++;
                 break;
             }
@@ -72,7 +72,7 @@ const goAhead = (n, direction) => {
                 curRow++;
                 break;
             }
-            if (snakArr[curRow][curCol + 1] != NaN) {
+            if (snakArr[curRow][curCol + 1] !== 'NaN') {
                 curRow++;
                 break;
             }
@@ -80,7 +80,7 @@ const goAhead = (n, direction) => {
         }
         // n--;
     }
-    goAhead(n, ++direction);
+    goAhead(--n, ++direction);
 }
 
 const printArr = () => {
@@ -104,6 +104,7 @@ const printArr = () => {
         initiate(n);
         curRow = 0;
         curCol = n - 1;
+        curDgt = 1;
         goAhead(n, 1);
         printArr();
     }
