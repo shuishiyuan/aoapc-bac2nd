@@ -27,19 +27,13 @@ const goAhead = (n, direction) => {
         return;
     }
     if (direction % 4 === 1) {
-        while (curRow < n) {
-            snakArr[curRow][curCol] = curDgt++;
+        do {
             if (curRow === n - 1) {
-                curCol--;
                 break;
             }
-            if (snakArr[curRow + 1][curCol] === 'NaN') {
-                curRow++
-            } else {
-                curCol--;
-                break;
-            }
-        }
+            snakArr[curRow++][curCol] = curDgt++;
+        } while (snakArr[curRow + 1][curCol] === 'NaN')
+        curCol--;
     } else if (direction % 4 === 2) {
         while (curCol >= 0) {
             snakArr[curRow][curCol] = curDgt++;
