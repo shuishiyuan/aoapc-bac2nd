@@ -14,25 +14,26 @@ let curCol = 0;
 
 const initiate = (n) => {
     snakArr = [];
-    for (let i = 0; i < n; ++i) {
+    for (let i = 0; i <= n; ++i) {
         snakArr[i] = [];
-        for (let j = 0; j < n; ++j) {
-            snakArr[i][j] = 'NaN';
+        for (let j = 0; j <= n; ++j) {
+            snakArr[i][j] = 'WALL';
         }
     }
 }
 
 const goAhead = (n, direction) => {
-    if (snakArr[curRow][curCol] !== 'NaN') {
+    if (snakArr[curRow][curCol] !== 'WALL') {
         return;
     }
     if (direction % 4 === 1) {
-        do {
+         while (snakArr[curRow + 1][curCol] === 'WALL') {
+            snakArr[curRow++][curCol] = curDgt++;
             if (curRow === n - 1) {
                 break;
             }
-            snakArr[curRow++][curCol] = curDgt++;
-        } while (snakArr[curRow + 1][curCol] === 'NaN')
+        }
+        snakArr[curRow][curCol] = curDgt++;
         curCol--;
     } else if (direction % 4 === 2) {
         while (curCol >= 0) {
@@ -41,7 +42,7 @@ const goAhead = (n, direction) => {
                 curRow--;
                 break;
             }
-            if (snakArr[curRow][curCol - 1] !== 'NaN') {
+            if (snakArr[curRow][curCol - 1] !== 'WALL') {
                 curRow--;
                 break;
             }
@@ -54,7 +55,7 @@ const goAhead = (n, direction) => {
                 curCol++;
                 break;
             }
-            if (snakArr[curRow - 1][curCol] !== 'NaN') {
+            if (snakArr[curRow - 1][curCol] !== 'WALL') {
                 curCol++;
                 break;
             }
@@ -67,7 +68,7 @@ const goAhead = (n, direction) => {
                 curRow++;
                 break;
             }
-            if (snakArr[curRow][curCol + 1] !== 'NaN') {
+            if (snakArr[curRow][curCol + 1] !== 'WALL') {
                 curRow++;
                 break;
             }
