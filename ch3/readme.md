@@ -18,6 +18,7 @@ examples + exercises + other programs
 
 ## Snake Matrics
 ### ch3-pg3.cpp
+### ch3-pg3.js
 
 ## Vertical Form Problem
 ### ch3-pg4.cpp
