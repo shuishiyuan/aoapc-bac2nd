@@ -25,14 +25,22 @@ const paint = (counter, abc, de) => {
         let s = input;
         let counter = 0;
         let vc;
-        for(let abc = 111; abc <= 999; ++abc) {
+        for (let abc = 111; abc <= 999; ++abc) {
             for (let de = 11; de <= 99; ++de) {
                 vc = `${abc}${de}${abc * (de % 10)}${abc * Math.floor(de / 10)}${abc * de}`;
+                let result = true;
+                for (let i = 0; i < vc.length; ++i) {
+                    c = vc.charAt(i);
+                    if (!s.includes(c)) {
+                        result = false;
+                        break;
+                    }
+                }
+                if (result) {
+                    paint(++counter, abc, de);
+                }
             }
         }
-        paint(counter, 111, 11);
-        // paint(counter, abc, de);
-        // console.log(`The last value of abc * de is ${vc}`);
         if (!counter) {
             console.log(`There is no answer to the input: ${s}`);
         }
