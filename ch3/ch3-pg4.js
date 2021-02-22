@@ -1,6 +1,7 @@
 const util = require("util");
 util.log(`Vertical Form Problem`);
 util.debuglog(`Vertical Form Problem`);
+const sprintf = require('sprintf-js').sprintf;
 const readline = require("readline");
 const rl = readline.createInterface({
     input: process.stdin
@@ -10,13 +11,14 @@ rl.on('close', () => {
 });
 const paint = (counter, abc, de) => {
     let output = util.format('<%d>\n', counter);
-    output += util.format('%s%d\n', '  ', abc);
-    // util.format(`X${de}`);
-    // util.format(`-----`);
-    // util.format(`${abc * (de % 10)}`);
-    // util.format(`${abc * Math.floor(de / 10)}`);
-    // util.format(`-----`);
-    // util.format(`${abc * de}`);
+    // output += util.format('%s%d\n', '', abc);
+    output += sprintf('%5d\n', abc);
+    output += sprintf('X%4d\n', de);
+    output += sprintf(`-----\n`);
+    output += sprintf('%5d\n', `${abc * (de % 10)}`);
+    output += sprintf('%4d\n', `${abc * Math.floor(de / 10)}`);
+    output += sprintf(`-----\n`);
+    output += sprintf('%5d\n', `${abc * de}`);
     console.log(output);
 }
 
@@ -47,6 +49,8 @@ const paint = (counter, abc, de) => {
         }
         if (!counter) {
             // console.log(`There is no answer to the input: ${s}`);
+            // console.timeStamp(`There is no answer to the input: `);
+            // console.timeStamp(`There is no answer to the input: ${s}`);
             util.log(`There is no answer to the input: ${s}`);
         }
     };
