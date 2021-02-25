@@ -22,6 +22,7 @@ examples + exercises + other programs
 
 ## Vertical Form Problem
 ### ch3-pg4.cpp
+### ch3-pg4.js
 
 ## UVa272 Tex Quotes
 ### ch3-pg5-exam1.cpp

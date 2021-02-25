@@ -9,7 +9,7 @@ rl.on('close', () => {
     process.exit();
 });
 const paint = (counter, abc, de) => {
-    let output = util.format('<%d>\n', counter);
+    let output = util.format('<%s>\n', counter);
     output += sprintf('%6d\n', abc);
     output += sprintf('X%5d\n', de);
     output += sprintf(`------\n`);
@@ -28,7 +28,7 @@ const paint = (counter, abc, de) => {
         };
         let s = input;
         let counter = 0;
-        paint(counter, 999, 99);
+        paint('sample', 999, 99);
         let vc;
         for (let abc = 111; abc <= 999; ++abc) {
             for (let de = 11; de <= 99; ++de) {
