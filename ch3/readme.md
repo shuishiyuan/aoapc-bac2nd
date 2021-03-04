@@ -26,6 +26,7 @@ examples + exercises + other programs
 
 ## UVa272 Tex Quotes
 ### ch3-pg5-exam1.cpp
+### ch3-pg5-exam1.js
 ### UVa272.cpp
 
 ## UVa10082 WERTYU
