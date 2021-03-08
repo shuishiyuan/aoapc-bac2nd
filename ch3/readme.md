@@ -28,6 +28,7 @@ examples + exercises + other programs
 ### ch3-pg5-exam1.cpp
 ### ch3-pg5-exam1.js
 ### UVa272.cpp
+### UVa272.js
 
 ## UVa10082 WERTYU
 ### ch3-pg6-exam2.cpp

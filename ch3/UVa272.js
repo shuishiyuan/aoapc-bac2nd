@@ -1,7 +1,6 @@
 console.log(new Date().toUTCString(), 'UVa272 text quotes elegant way');
 
 const readline = require("readline");
-const { rootCertificates } = require("tls");
 const rl = readline.createInterface({
     input: process.stdin
 });
