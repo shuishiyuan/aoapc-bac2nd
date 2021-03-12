@@ -8,7 +8,7 @@ rl.on('close', () => {
     process.exit()
 });
 
-const DIC = '1234567890-=!@#$%^&*()_+';
+const DIC = '1234567890-=!@#$%^&*()_+QWERTYUIOP[]ASDFGHJKL;\'ZXCVBNM,./';
 
 (async () => {
     for await (let line of rl) {
@@ -19,11 +19,11 @@ const DIC = '1234567890-=!@#$%^&*()_+';
         for (let i = 0; i < line.length; ++i) {
             let c = line.charAt(i);
             if (DIC.includes(c)) {
-                output += DIC[DIC.indexOf(c) - 1];
+                output += DIC[DIC.indexOf(c) - 1] ? DIC[DIC.indexOf(c) - 1] : c;
             } else {
                 output += c;
             }
         }
-        console.log(new Date().toUTCString(), output);
+        console.log(output);
     }
-});
+})();

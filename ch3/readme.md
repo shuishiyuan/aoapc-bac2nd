@@ -32,6 +32,7 @@ examples + exercises + other programs
 
 ## UVa10082 WERTYU
 ### ch3-pg6-exam2.cpp
+### ch3-pg6-exam2.js
 ### UVa10082.cpp
 
 ## UVa401 Palindromes
