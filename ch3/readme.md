@@ -34,6 +34,7 @@ examples + exercises + other programs
 ### ch3-pg6-exam2.cpp
 ### ch3-pg6-exam2.js
 ### UVa10082.cpp
+### UVa10082.js
 
 ## UVa401 Palindromes
 ### ch3-pg7-exam3.cpp
