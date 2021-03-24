@@ -38,6 +38,7 @@ examples + exercises + other programs
 
 ## UVa401 Palindromes
 ### ch3-pg7-exam3.cpp
+### ch3-pg7-exam3.js
 ### UVa401.cpp
 
 ## UVa340 Master-Mind Hints
