@@ -1,0 +1,1 @@
+﻿console.log(new Date().toUTCString(), "UVa401 Palindromes in a delegate way");
