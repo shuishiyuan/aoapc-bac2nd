@@ -10,7 +10,7 @@ rl.on('close', () => {
 });
 
 const RAW = '1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
-const MIR = '1-E-S67890QWERTYUIOPA2DFGHJKLZXCVBNM';
+const MIR = '1SE----8-0-W3-TYUIO-A2---HL-J-X-V--M';
 const MSG = [
     "is neither Symetry nor Palindromes.",
     "is Symetry but not Palindromes.",
@@ -29,7 +29,7 @@ const MSG = [
         let isPalindrome = 1;
 
         let ascInd = 0;
-        let descInd = line.length;
+        let descInd = line.length - 1;
         while (ascInd <= descInd) {
             if (line.charAt(ascInd) != line.charAt(descInd)) {
                 isSymetry = 0;
@@ -40,7 +40,7 @@ const MSG = [
         }
 
         ascInd = 0;
-        descInd = line.length;
+        descInd = line.length - 1;
         while (ascInd <= descInd) {
             if (line.charAt(ascInd) != MIR.charAt(RAW.indexOf(line.charAt(descInd)))) {
                 isPalindrome = 0;
