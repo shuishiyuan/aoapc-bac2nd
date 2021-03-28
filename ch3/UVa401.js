@@ -23,6 +23,15 @@ const MIR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
         for (let i = 0; i < (1 + len) / 2; ++i) {
             if (line.indexOf(i) != line.indexOf(len - i)) {
                 isSymetry = false;
+                break;
+            }
+        }
+
+        for (let j = 0; j < (1 + len) / 2; ++j) {
+            let mirValue = line.indexOf(j);
+            if (mirValue != line.indexOf(len - j)) {
+                isPalindromes = false;
+                break;
             }
         }
     }
