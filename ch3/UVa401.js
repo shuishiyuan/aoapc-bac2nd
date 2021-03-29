@@ -11,6 +11,15 @@ rl.on('close', () => {
 
 const MIR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
 
+const isUpperAlpha = (ch) => {
+    ;
+}
+
+const isNum = (ch) => {
+    let reg = /^[0-9]+.?[0-9]*$/;
+    return reg.test(ch);
+}
+
 (async () => {
     for await (let line of rl) {
         if ('Q' === line) {
