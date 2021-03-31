@@ -13,9 +13,10 @@ const MIR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
 
 const isUpperAlpha = (ch) => {
     let reg = "^[A-Z]+.?[A-Z]*$";
+    return reg.test(ch);
 }
 
-const isNum = (ch) => {
+const isDigit = (ch) => {
     let reg = "^[0-9]+.?[0-9]*$";
     return reg.test(ch);
 }
@@ -39,7 +40,10 @@ const isNum = (ch) => {
         for (let j = 0; j < (1 + len) / 2; ++j) {
             let mirValue = line.indexOf(j);
             if (isUpperAlpha(line.indexOf(j))) {
-                mirValue = MIR.indexOf(line.indexOf(j).charcodAt());
+                mirValue = MIR.indexOf(line.indexOf(j).charCodAt() - 'A'.charCodeAt());
+            }
+            if (isDigit(line.indexOf(j))) {
+                mirValue = MIR.indexOf(line.indexOf(j).charCodAt() - '1'.charCodAt() + 26);
             }
             if (mirValue != line.indexOf(len - j)) {
                 isPalindromes = false;
