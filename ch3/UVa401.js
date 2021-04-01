@@ -10,6 +10,12 @@ rl.on('close', () => {
 });
 
 const MIR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
+const MSG = [
+    'Neither Symytry Nor Palindrome',
+    'Symytry but Not Palindrome',
+    'Palindrome but Not Symytry',
+    'Both Symytry And Palindrome'
+]
 
 const isUpperAlpha = (ch) => {
     let reg = "^[A-Z]+.?[A-Z]*$";
@@ -47,7 +53,7 @@ const isDigit = (ch) => {
             }
             if (mirValue != line.indexOf(len - j)) {
                 isPalindromes = false;
-                break;
+               break;
             }
         }
     }
