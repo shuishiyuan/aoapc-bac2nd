@@ -37,24 +37,25 @@ const isDigit = (ch) => {
         let len = line.length - 1;
 
         for (let i = 0; i < (1 + len) / 2; ++i) {
-            if (line.indexOf(i) != line.indexOf(len - i)) {
+            if (line.charAt(i) != line.charAt(len - i)) {
                 isSymetry = false;
                 break;
             }
         }
 
         for (let j = 0; j < (1 + len) / 2; ++j) {
-            let mirValue = line.indexOf(j);
-            if (isUpperAlpha(line.indexOf(j))) {
-                mirValue = MIR.indexOf(line.indexOf(j).charCodAt() - 'A'.charCodeAt());
+            let mirValue = line.charAt(j);
+            if (isUpperAlpha(line.charAt(j))) {
+                mirValue = MIR.charAt(line.charAt(j).charCodAt() - 'A'.charCodeAt());
             }
-            if (isDigit(line.indexOf(j))) {
-                mirValue = MIR.indexOf(line.indexOf(j).charCodAt() - '1'.charCodAt() + 26);
+            if (isDigit(line.charAt(j))) {
+                mirValue = MIR.charAt(line.charAt(j).charCodAt() - '1'.charCodAt() + 26);
             }
-            if (mirValue != line.indexOf(len - j)) {
+            if (mirValue != line.charAt(len - j)) {
                 isPalindromes = false;
                break;
             }
         }
+        console.log(`${line} is ${MSG[2 * isDigit + isPalindromes]}`);
     }
 })();
