@@ -18,12 +18,12 @@ const MSG = [
 ]
 
 const isUpperAlpha = (ch) => {
-    let reg = "^[A-Z]+.?[A-Z]*$";
+    let reg = "^[A-Z]+$";
     return reg.test(ch);
 }
 
 const isDigit = (ch) => {
-    let reg = "^[0-9]+.?[0-9]*$";
+    let reg = "^[0-9]+$";
     return reg.test(ch);
 }
 
