@@ -9,7 +9,7 @@ rl.on('close', () => {
     process.exit();
 });
 
-const MIR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
+const MIR = 'ABCDEFGHIJKLMNOPQR2TUVWXYZ123456789';
 const MSG = [
     'Neither Symytry Nor Palindrome',
     'Symytry but Not Palindrome',
@@ -18,12 +18,12 @@ const MSG = [
 ]
 
 const isUpperAlpha = (ch) => {
-    let reg = "^[A-Z]+$";
+    let reg = /^[A-Z]+$/;
     return reg.test(ch);
 }
 
 const isDigit = (ch) => {
-    let reg = "^[0-9]+$";
+    let reg = /^[0-9]+$/;
     return reg.test(ch);
 }
 
@@ -32,13 +32,13 @@ const isDigit = (ch) => {
         if ('Q' === line) {
             rl.close();
         }
-        let isSymetry = true;
-        let isPalindromes = true;
+        let isSymetry = 1;
+        let isPalindromes = 1;
         let len = line.length - 1;
 
         for (let i = 0; i < (1 + len) / 2; ++i) {
             if (line.charAt(i) != line.charAt(len - i)) {
-                isSymetry = false;
+                isSymetry = 0;
                 break;
             }
         }
@@ -46,16 +46,16 @@ const isDigit = (ch) => {
         for (let j = 0; j < (1 + len) / 2; ++j) {
             let mirValue = line.charAt(j);
             if (isUpperAlpha(line.charAt(j))) {
-                mirValue = MIR.charAt(line.charAt(j).charCodAt() - 'A'.charCodeAt());
+                mirValue = MIR.charAt(line.charAt(j).charCodeAt() - 'A'.charCodeAt());
             }
             if (isDigit(line.charAt(j))) {
-                mirValue = MIR.charAt(line.charAt(j).charCodAt() - '1'.charCodAt() + 26);
+                mirValue = MIR.charAt(line.charAt(j).charCodeAt() - '1'.charCodeAt() + 26);
             }
             if (mirValue != line.charAt(len - j)) {
-                isPalindromes = false;
+                isPalindromes = 0;
                break;
             }
         }
-        console.log(`${line} is ${MSG[2 * isDigit + isPalindromes]}`);
+        console.log(`${line} is ${MSG[2 * isSymetry + isPalindromes]}`);
     }
 })();
