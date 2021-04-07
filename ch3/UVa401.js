@@ -9,7 +9,7 @@ rl.on('close', () => {
     process.exit();
 });
 
-const MIR = 'ABCDEFGHIJKLMNOPQR2TUVWXYZ123456789';
+const MIR = 'ABCDEFGHILKJMNOPQR2TUVWXYZ1S3456789';
 const MSG = [
     'Neither Symytry Nor Palindrome',
     'Symytry but Not Palindrome',
@@ -56,6 +56,6 @@ const isDigit = (ch) => {
                break;
             }
         }
-        console.log(`${line} is ${MSG[2 * isSymetry + isPalindromes]}`);
+        console.log(`${line} is ${MSG[2 * isPalindromes + isSymetry]}`);
     }
 })();
