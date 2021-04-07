@@ -9,7 +9,7 @@ rl.on('close', () => {
     process.exit();
 });
 
-const MIR = 'ABCDEFGHILKJMNOPQR2TUVWXYZ1S3456789';
+const MIR = 'A---3FGHILKJMNOPQR2TUVWXYZ1S3456789';
 const MSG = [
     'Neither Symytry Nor Palindrome',
     'Symytry but Not Palindrome',
