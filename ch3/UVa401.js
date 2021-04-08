@@ -9,7 +9,7 @@ rl.on('close', () => {
     process.exit();
 });
 
-const MIR = 'A---3FGHILKJMNOPQR2TUVWXYZ1S3456789';
+const MIR = 'A---3--HIL-JM-O---2TUVWXY51SE-Z--8-';
 const MSG = [
     'Neither Symytry Nor Palindrome',
     'Symytry but Not Palindrome',
@@ -37,23 +37,21 @@ const isDigit = (ch) => {
         let len = line.length - 1;
 
         for (let i = 0; i < (1 + len) / 2; ++i) {
-            if (line.charAt(i) != line.charAt(len - i)) {
+            let c = line.charAt(i);
+            if (c != line.charAt(len - i)) {
                 isSymetry = 0;
-                break;
             }
-        }
-
-        for (let j = 0; j < (1 + len) / 2; ++j) {
-            let mirValue = line.charAt(j);
-            if (isUpperAlpha(line.charAt(j))) {
-                mirValue = MIR.charAt(line.charAt(j).charCodeAt() - 'A'.charCodeAt());
+            if (isUpperAlpha(c)) {
+                c = MIR.charAt(c.charCodeAt() - 'A'.charCodeAt());
             }
-            if (isDigit(line.charAt(j))) {
-                mirValue = MIR.charAt(line.charAt(j).charCodeAt() - '1'.charCodeAt() + 26);
+            if (isDigit(c)) {
+                c = MIR.charAt(c.charCodeAt() - '1'.charCodeAt() + 26);
             }
-            if (mirValue != line.charAt(len - j)) {
+            if (c != line.charAt(len - i)) {
                 isPalindromes = 0;
-               break;
+            }
+            if (!isPalindromes && !isSymetry) {
+                break;
             }
         }
         console.log(`${line} is ${MSG[2 * isPalindromes + isSymetry]}`);
