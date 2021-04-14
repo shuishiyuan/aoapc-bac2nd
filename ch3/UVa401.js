@@ -36,6 +36,7 @@ const isDigit = (ch) => {
         let isPalindromes = 1;
         let len = line.length - 1;
 
+        console.timeStamp('loop-metrix');
         for (let i = 0; i < (1 + len) / 2; ++i) {
             let c = line.charAt(i);
             if (c != line.charAt(len - i)) {
@@ -55,5 +56,6 @@ const isDigit = (ch) => {
             }
         }
         console.log(`${line} is ${MSG[2 * isPalindromes + isSymetry]}`);
+        console.timeEnd('loop-metrix');
     }
 })();
