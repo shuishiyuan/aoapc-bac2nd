@@ -36,20 +36,24 @@ const isDigit = (ch) => {
         let isPalindromes = 1;
         let len = line.length - 1;
 
-        console.timeStamp('loop-metrix');
+        console.time('loop-metrix');
         for (let i = 0; i < (1 + len) / 2; ++i) {
             let c = line.charAt(i);
-            if (c != line.charAt(len - i)) {
-                isSymetry = 0;
+            if (isSymetry) {
+                if (c != line.charAt(len - i)) {
+                    isSymetry = 0;
+                }
             }
-            if (isUpperAlpha(c)) {
-                c = MIR.charAt(c.charCodeAt() - 'A'.charCodeAt());
-            }
-            if (isDigit(c)) {
-                c = MIR.charAt(c.charCodeAt() - '1'.charCodeAt() + 26);
-            }
-            if (c != line.charAt(len - i)) {
-                isPalindromes = 0;
+            if (isPalindromes) {
+                if (isUpperAlpha(c)) {
+                    c = MIR.charAt(c.charCodeAt() - 'A'.charCodeAt());
+                }
+                if (isDigit(c)) {
+                    c = MIR.charAt(c.charCodeAt() - '1'.charCodeAt() + 26);
+                }
+                if (c != line.charAt(len - i)) {
+                    isPalindromes = 0;
+                }
             }
             if (!isPalindromes && !isSymetry) {
                 break;
