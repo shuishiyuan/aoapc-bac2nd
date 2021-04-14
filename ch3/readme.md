@@ -40,6 +40,7 @@ examples + exercises + other programs
 ### ch3-pg7-exam3.cpp
 ### ch3-pg7-exam3.js
 ### UVa401.cpp
+### UVa401.js
 
 ## UVa340 Master-Mind Hints
 ### ch3-pg8-exam4.cpp
