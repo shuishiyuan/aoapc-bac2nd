@@ -1,0 +1,1 @@
+console.log("UVa340 Master-Mind Hints the 1st approach");
