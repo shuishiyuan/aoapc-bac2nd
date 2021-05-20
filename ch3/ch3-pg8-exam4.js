@@ -14,5 +14,8 @@ rl.on('close', () => {
         if (line === 0){
             rl.close();
         }
+        if (line === 'Q') {
+            ;
+        }
     }
 })();
