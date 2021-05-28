@@ -13,10 +13,10 @@ rl.on('close', () => {
 
 (async () => {
     for await (let line of rl) {
+        ws.write(line);
+        console.log(line);
         if ('0' === line) {
             rl.close();
         }
-        ws.write(line);
-        console.log(line);
     }
 })();
