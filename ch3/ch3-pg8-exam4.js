@@ -5,6 +5,8 @@ const ws = fs.createWriteStream("data/ch3-pg8-exam4.out");
 
 let output = '';
 let bitWidth = 0;
+let demoLine = '';
+let gameNo = 0;
 
 const readline = require("readline");
 const rl = readline.createInterface({
@@ -28,17 +30,32 @@ const isGameBreak = (line) => {
 (async () => {
     for await (let line of rl) {
         console.log(line);
-        output = output + line + '\n';
+        let directCnt = 0;
+        let extentCnt = 0;
+        // output = output + line + '\n';
         if ('0' === line) {
             rl.close();
         }
         if (bitWidth === 0) {
             bitWidth = parseInt(line);
+            gameNo++;
+            output += 'Game ' + gameNo + ':\n';
+            continue;
+        }
+        if (demoLine === '') {
+            demoLine = line;
             continue;
         }
         if (isGameBreak(line)) {
             bitWidth = 0;
+            demoLine = '';
             continue;
+        }
+        for (let i = 0; i < bitWidth; ++i) {
+            if (line.charAt(i) === demoLine.charAt(i)) {
+                directCnt++;
+                continue;
+            };
         }
     }
 })();
