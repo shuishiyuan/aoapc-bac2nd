@@ -55,7 +55,14 @@ const isGameBreak = (line) => {
             if (line.charAt(i) === demoLine.charAt(i)) {
                 directCnt++;
                 continue;
-            };
+            }
         }
+        for (let i = 0; i < bitWidth; ++i) {
+            if (line.contains(demoLine.charAt(i))) {
+                extentCnt++;
+                continue;
+            }
+        }
+        output += '    (' + directCnt + ',' + extentCnt + ')\n';
     }
 })();
