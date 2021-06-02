@@ -58,7 +58,7 @@ const isGameBreak = (line) => {
             }
         }
         for (let i = 0; i < bitWidth; ++i) {
-            if (line.contains(demoLine.charAt(i))) {
+            if (line.includes(demoLine.charAt(i))) {
                 extentCnt++;
                 continue;
             }
