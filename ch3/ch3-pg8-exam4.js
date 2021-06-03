@@ -63,6 +63,7 @@ const isGameBreak = (line) => {
                 continue;
             }
         }
+        extentCnt -= directCnt;
         output += '    (' + directCnt + ',' + extentCnt + ')\n';
     }
 })();
