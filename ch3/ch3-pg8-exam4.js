@@ -52,18 +52,21 @@ const isGameBreak = (line) => {
             continue;
         }
         for (let i = 0; i < bitWidth; ++i) {
-            if (line.charAt(i) === demoLine.charAt(i)) {
-                directCnt++;
-                continue;
-            }
-        }
-        for (let i = 0; i < bitWidth; ++i) {
             if (line.includes(demoLine.charAt(i))) {
                 extentCnt++;
                 continue;
             }
         }
-        extentCnt -= directCnt;
+        for (let i = 0; i < bitWidth; ++i) {
+            if (line.charAt(i) === demoLine.charAt(i)) {
+                directCnt++;
+                if (line.includes(demoLine.charAt(i))) {
+                    extentCnt--;
+                }
+                continue;
+            }
+        }
+        // extentCnt -= directCnt;
         output += '    (' + directCnt + ',' + extentCnt + ')\n';
     }
 })();
