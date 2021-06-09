@@ -52,7 +52,8 @@ const isGameBreak = (line) => {
             continue;
         }
         for (let i = 0; i < bitWidth; ++i) {
-            if (line.includes(demoLine.charAt(i))) {
+            if (line.includes(demoLine.charAt(i)) &&
+                    line.charAt(i) != demoLine.charAt(i)) {
                 extentCnt++;
                 continue;
             }
