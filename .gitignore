@@ -1,6 +1,7 @@
 **/bin/*
 *.swp
 .viminfo
+**/.idea
 .bash_history
 .gitconfig
 node_modules
