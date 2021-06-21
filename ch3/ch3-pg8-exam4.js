@@ -1,4 +1,5 @@
 console.log("UVa340 Master-Mind Hints the 1st approach");
+// import fs from "fs";
 const fs = require("fs");
 const rs = fs.createReadStream("data/ch3-pg8-exam4.in");
 const ws = fs.createWriteStream("data/ch3-pg8-exam4.out");
@@ -52,19 +53,12 @@ const isGameBreak = (line) => {
             continue;
         }
         for (let i = 0; i < bitWidth; ++i) {
-            if (line.includes(demoLine.charAt(i)) &&
-                    line.charAt(i) != demoLine.charAt(i)) {
-                extentCnt++;
-                continue;
-            }
-        }
-        for (let i = 0; i < bitWidth; ++i) {
-            if (line.charAt(i) === demoLine.charAt(i)) {
-                directCnt++;
-                if (line.includes(demoLine.charAt(i))) {
-                    extentCnt--;
+            if (line.includes(demoLine.charAt(i))) {
+                if (line.charAt(i) != demoLine.charAt(i)) {
+                    extentCnt++;
+                } else {
+                    directCnt++;
                 }
-                continue;
             }
         }
         // extentCnt -= directCnt;
