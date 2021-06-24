@@ -28,6 +28,16 @@ const isGameBreak = (line) => {
     return true;
 }
 
+const occrCnt = (line, c) => {
+    let cnt = 0;
+    for (let i = 0; i < line.length; ++i) {
+        if (c === line.charAt(i)) {
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
 (async () => {
     for await (let line of rl) {
         console.log(line);
@@ -53,9 +63,11 @@ const isGameBreak = (line) => {
             continue;
         }
         for (let i = 0; i < bitWidth; ++i) {
-            if (line.includes(demoLine.charAt(i))) {
-                if (line.charAt(i) != demoLine.charAt(i)) {
-                    extentCnt++;
+            // if (line.includes(demoLine.charAt(i))) {
+            let c = demoLine.charAt(i);
+            if (line.includes(c)) {
+                if (line.charAt(i) != c) {
+                    extentCnt += occrCnt(line, c);
                 } else {
                     directCnt++;
                 }
