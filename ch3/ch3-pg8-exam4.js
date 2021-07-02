@@ -40,7 +40,7 @@ const occrCnt = (line, c) => {
 
 (async () => {
     for await (let line of rl) {
-        console.log(line);
+        // console.log(line);
         let directCnt = 0;
         let extentCnt = 0;
         // output = output + line + '\n';
@@ -65,13 +65,13 @@ const occrCnt = (line, c) => {
         for (let i = 0; i < bitWidth; ++i) {
             // if (line.includes(demoLine.charAt(i))) {
             let c = demoLine.charAt(i);
-            if (line.includes(c)) {
-                if (line.charAt(i) != c) {
-                    extentCnt += occrCnt(line, c);
-                } else {
-                    directCnt++;
-                }
+            // if (line.includes(c)) {
+            if (line.charAt(i) != c) {
+                extentCnt += occrCnt(line, c);
+            } else {
+                directCnt++;
             }
+            // }
         }
         // extentCnt -= directCnt;
         output += '    (' + directCnt + ',' + extentCnt + ')\n';
