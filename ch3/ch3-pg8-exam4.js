@@ -71,7 +71,7 @@ const occrCnt = (line, c) => {
             } else {
                 directCnt++;
                 if (extentCnt > 0) {
-                    extentCnt = extentCnt - (occrCnt(line, c) - 1);
+                    extentCnt = extentCnt - (occrCnt(demoLine, c) - 1);
                 }
             }
             // }
