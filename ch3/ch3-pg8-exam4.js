@@ -71,12 +71,12 @@ const occrCnt = (line, c) => {
             } else {
                 directCnt++;
                 // if (extentCnt > 0) {
-                    extentCnt = extentCnt - (occrCnt(demoLine, c) - 1);
+                extentCnt = extentCnt - (occrCnt(demoLine, c) - 1);
                 // }
             }
             // }
         }
         // extentCnt -= directCnt;
-        output += '    (' + directCnt + ',' + extentCnt + ')\n';
+        output += `    (${directCnt},${extentCnt > 0 ? extentCnt: 0})\n`;
     }
 })();
